@@ -11,4 +11,5 @@
 1. `docker-compose up`
 
 #### Api
+1. `go install`
 1. `go run main.go`
