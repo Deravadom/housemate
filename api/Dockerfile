@@ -105,7 +105,7 @@ RUN set -eux; \
 #		--enable-debug \
 		--disable-rpath \
 		--with-uuid=e2fs \
-		--with-pgport=5432 \
+		--with-pgport=2345 \
 		--with-system-tzdata=/usr/share/zoneinfo \
 		--prefix=/usr/local \
 		--with-includes=/usr/local/include \
@@ -206,5 +206,5 @@ STOPSIGNAL SIGINT
 # documentation at https://www.postgresql.org/docs/12/server-start.html notes
 # that even 90 seconds may not be long enough in many instances.
 
-EXPOSE 5432
+EXPOSE 2345
 CMD ["postgres"]
