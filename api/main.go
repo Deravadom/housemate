@@ -1,28 +1,22 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	// "github.com/gin-gonic/gin"
+	"api/database"
+	"api/models"
+	"github.com/joho/godotenv"
+	"log"
+	"fmt"
 )
 
-type Album struct {
-	ID     string  `json:"id"`
-	Title  string  `json:"title"`
-	Artist string  `json:"artist"`
-	Price  float64 `json:"price"`
-}
-
-var albums = []Album{
-	{ID: "1", Title: "Blu Train", Artist: "Person", Price: 100.05},
-}
-
-func getAlbums(context *gin.Context) {
-	context.IndentedJSON(http.StatusOK, albums)
-}
-
 func main() {
-	router := gin.Default()
-	router.GET("/albums", getAlbums)
-	router.Run("localhost:3000")
+	// Load env
+	err := godotenv.Load()
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	database.Connect()
+	database.Database.AutoMigrate(&models.SchemaMigration{})
 }
