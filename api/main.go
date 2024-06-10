@@ -1,12 +1,13 @@
 package main
 
 import (
-	// "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 	"api/database"
 	"api/models"
+	"api/controllers"
 	"github.com/joho/godotenv"
 	"log"
-	"fmt"
+	// "fmt"
 )
 
 func main() {
@@ -19,4 +20,11 @@ func main() {
 
 	database.Connect()
 	database.Database.AutoMigrate(&models.SchemaMigration{})
+	database.Database.AutoMigrate(&models.Note{})
+
+	r := gin.Default()
+	// Set up notes routes
+	controllers.SetupNoteRoutes(r)
+
+	r.Run()
 }
