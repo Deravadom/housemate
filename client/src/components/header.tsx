@@ -1,9 +1,7 @@
 import React from "react"
 
 const Header = () => {
-  return <div className="flex bg-gray">
-    dfgfg
-  </div>
+  return <span className="f2 center">Housemate</span>
 }
 
 export default Header;
