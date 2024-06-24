@@ -1,7 +1,8 @@
 import React from "react"
+import { FONT_COLOR } from "../styles.class.names";
 
 const Header = () => {
-  return <span className="f2 center">Housemate</span>
+  return <div className="f1 flex justify-center bg-moon-gray w-100">Housemate</div>
 }
 
 export default Header;

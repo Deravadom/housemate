@@ -1,15 +1,24 @@
-# housemate api
-## Installation and Setup
+# README
 
-### Requirements
-- Docker Desktop
-- Go
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### Setup
-#### Postgresql
-1. `docker-compose build`
-1. `docker-compose up`
+Things you may want to cover:
 
-#### Api
-1. `go install`
-1. `go run main.go`
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

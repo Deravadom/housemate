@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import Header from './components/header';
-import { FONT_COLOR, BG_COLOR } from './styles.class.names';
+import { TEST_BG_COLOR } from './styles.class.names';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Timeline from './components/timeline/Timeline';
+
+const style: CSSProperties = {
+  minHeight: '100vh',
+  backgroundColor: TEST_BG_COLOR,
+};
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Timeline />,
+  }
+])
 
 const App = () => {
   return (
-    <div className={`flex ${FONT_COLOR} ${BG_COLOR} w-100`}>
+    <div className='flex-column h-100-l' style={style} >
       <Header />
+      <RouterProvider router={router} />
     </div>
   );
 }
