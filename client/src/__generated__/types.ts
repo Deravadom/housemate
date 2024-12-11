@@ -70,6 +70,7 @@ export type User = {
   __typename?: 'User';
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type TimelineItemFragment = { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null };
@@ -97,7 +98,7 @@ export type LoginMutation = { __typename?: 'Mutation', login?: any | null };
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string } | null };
+export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string, name?: string | null } | null };
 
 export type TestFieldQueryVariables = Exact<{ [key: string]: never; }>;
 

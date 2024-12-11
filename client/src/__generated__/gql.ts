@@ -17,7 +17,7 @@ const documents = {
     "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}": types.TimelineItemFragmentDoc,
     "mutation createTimelineItem($title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  createTimelineItem(\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.CreateTimelineItemDocument,
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
-    "query currentUser {\n  currentUser {\n    email\n  }\n}": types.CurrentUserDocument,
+    "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}": types.CurrentUserDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
     "query timelineItems {\n  timelineItems {\n    ...TimelineItem\n  }\n}": types.TimelineItemsDocument,
     "query foo {\n  foo\n}": types.FooDocument,
@@ -52,7 +52,7 @@ export function gql(source: "mutation login($email: String!, $password: String!)
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query currentUser {\n  currentUser {\n    email\n  }\n}"): (typeof documents)["query currentUser {\n  currentUser {\n    email\n  }\n}"];
+export function gql(source: "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"): (typeof documents)["query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
