@@ -16,7 +16,6 @@ const LoginForm = ({ to }: Props) => {
   const { login } = useAuth();
 
   const onSubmit: SubmitHandler<MutationLoginArgs> = (data) => {
-    console.log(data)
     login(data, to)
   }
 

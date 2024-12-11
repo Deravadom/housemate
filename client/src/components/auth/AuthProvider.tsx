@@ -20,7 +20,6 @@ const AuthProvider = ({children}: PropsWithChildren) => {
 
   const login: Login = (data, to) => {
     apiLogin({variables: data}).then(res => {
-      console.log(res)
       localStorage.setItem('housemate-bearer', res.data?.login?.token)
       setToken(res.data?.login?.token)
       toast.success('Successfully Logged In!')

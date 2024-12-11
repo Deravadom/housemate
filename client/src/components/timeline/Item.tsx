@@ -42,7 +42,7 @@ const Item = ({
   }
 
   return (
-    <div className={`flex flex-column w-100 justify-center ba b--${color} mv1 mh2`} onClick={toggleShowDetails}>
+    <div className={`flex flex-column w-75 justify-center ba b--${color} mv1 mh2`} onClick={toggleShowDetails}>
       <SwipeToRevealActions
         actionButtons={[{ content: <ActionButton />, onClick: () => window.alert('click') }]}
         actionButtonMinWidth={70}

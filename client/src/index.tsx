@@ -42,7 +42,7 @@ root.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </ApolloProvider>
   </React.StrictMode>
 );
