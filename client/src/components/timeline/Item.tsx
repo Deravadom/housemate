@@ -39,8 +39,8 @@ const Item = ({
   ]
 
   return (
-    <div className={`flex flex-row justify-between w-85 ba b--${color} mv2 mh2`}>
-      <div className={`flex flex-column justify-center`} onClick={toggleShowDetails}>
+    <div className={`flex flex-row justify-between w-85 ba b--${color} mv2 mh2`} onClick={toggleShowDetails}>
+      <div className={`flex flex-column justify-center`}>
         <span className='f3 ml1'>{title}</span>
         {showDetails && (
           <div>

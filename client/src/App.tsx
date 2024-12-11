@@ -7,6 +7,8 @@ import AuthedRoute from './components/auth/AuthedRoute';
 import TestApi from './components/TestApi';
 import TimelinePage from './components/timeline/TimelinePage';
 import Header from './components/Header';
+import routes from './routes';
+import LeftoversPage from './components/leftovers/LeftoversPage';
 
 const style: CSSProperties = {
   minHeight: '100vh',
@@ -21,10 +23,11 @@ const App = () => {
       <Header />
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
-          <Route path="/timeline" element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
-          <Route path="/login" element={<AuthPage to="timeline" />} />
-          <Route path="/test-api" element={<AuthedRoute><TestApi /></AuthedRoute>} />
+          <Route path={routes.index} element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
+          <Route path={routes.timeline} element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
+          <Route path={routes.login} element={<AuthPage to={routes.timeline} />} />
+          <Route path={routes.testApi} element={<AuthedRoute><TestApi /></AuthedRoute>} />
+          <Route path={routes.leftovers} element={<AuthedRoute><LeftoversPage /></AuthedRoute>} />
         </Routes>
       </AuthProvider>
       <AuthProvider>
