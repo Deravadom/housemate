@@ -17,6 +17,7 @@ const documents = {
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
     "query currentUser {\n  currentUser {\n    email\n  }\n}": types.CurrentUserDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
+    "query timelineItems {\n  timelineItems {\n    id\n    title\n    body\n    color\n    dueAt\n    frequency\n  }\n}": types.TimelineItemsDocument,
     "query foo {\n  foo\n}": types.FooDocument,
 };
 
@@ -46,6 +47,10 @@ export function gql(source: "query currentUser {\n  currentUser {\n    email\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "query testField {\n  testField\n}"): (typeof documents)["query testField {\n  testField\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query timelineItems {\n  timelineItems {\n    id\n    title\n    body\n    color\n    dueAt\n    frequency\n  }\n}"): (typeof documents)["query timelineItems {\n  timelineItems {\n    id\n    title\n    body\n    color\n    dueAt\n    frequency\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

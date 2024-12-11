@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: timeline_items
+#
+#  id              :bigint           not null, primary key
+#  body            :text
+#  color           :string
+#  due_at          :datetime
+#  frequency_unit  :string
+#  frequency_value :integer
+#  title           :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  title: MyString
+  body: MyText
+  frequency_unit: MyString
+  frequency_value: 1
+  due_at: 2024-12-03 12:18:06
+  color: MyString
+
+two:
+  title: MyString
+  body: MyText
+  frequency_unit: MyString
+  frequency_value: 1
+  due_at: 2024-12-03 12:18:06
+  color: MyString

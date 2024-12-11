@@ -3,6 +3,7 @@
 module Types
   class QueryType < Types::BaseObject
     include Queries::UserQueryType
+    include Queries::TimelineQueryType
 
     field :test_field, String, null: false, description: "An example field added by the generator"
     

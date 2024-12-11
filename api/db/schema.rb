@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_01_220754) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_03_201806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "timeline_items", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body"
+    t.string "frequency_unit"
+    t.integer "frequency_value"
+    t.datetime "due_at"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "password_digest", null: false

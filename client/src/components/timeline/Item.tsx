@@ -5,14 +5,15 @@ import useToggle from '../../hooks/useToggle'
 type FrequencyUnit = 'day' | 'week' | 'month' | 'year'
 
 export type ItemProps = {
-  id: number
+  id: string
   title: string
-  body: string
-  frequencyUnit: FrequencyUnit
-  frequencyValue: number
-  lastCompletedAt?: Date
-  dueAt: Date
-  color: string
+  body?: string | null
+  // frequencyUnit: FrequencyUnit
+  // frequencyValue: number
+  frequency?: string | null
+  lastCompletedAt?: Date | null
+  dueAt?: Date | null
+  color?: string | null
 }
 
 const ActionButton = () => (
@@ -23,8 +24,9 @@ const Item = ({
   id, 
   title,
   body,
-  frequencyUnit,
-  frequencyValue,
+  // frequencyUnit,
+  // frequencyValue,
+  frequency,
   lastCompletedAt,
   dueAt,
   color
@@ -53,10 +55,11 @@ const Item = ({
       </SwipeToRevealActions>
       {showDetails && !open && (
         <div>
-          <p>{body}</p>
-          <p>{frequencyValue} {frequencyUnit}</p>
-          <p>{lastCompletedAt?.toLocaleDateString()}</p>
-          <p>{dueAt.toLocaleDateString()}</p>
+          {body && <p>{body}</p>}
+          {/* <p>{frequencyValue} {frequencyUnit}</p>
+          <p>{lastCompletedAt?.toLocaleDateString()}</p> */}
+          {frequency && <p>{frequency}</p>}
+          {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
         </div>
       
       )}

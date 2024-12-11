@@ -12,6 +12,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  ISO8601DateTime: { input: any; output: any; }
   JSON: { input: any; output: any; }
 };
 
@@ -41,6 +42,17 @@ export type Query = {
   foo?: Maybe<Scalars['String']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
+  timelineItems?: Maybe<Array<TimelineItem>>;
+};
+
+export type TimelineItem = {
+  __typename?: 'TimelineItem';
+  body?: Maybe<Scalars['String']['output']>;
+  color?: Maybe<Scalars['String']['output']>;
+  dueAt?: Maybe<Scalars['ISO8601DateTime']['output']>;
+  frequency?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  title: Scalars['String']['output'];
 };
 
 export type User = {
@@ -66,6 +78,11 @@ export type TestFieldQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TestFieldQuery = { __typename?: 'Query', testField: string };
+
+export type TimelineItemsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TimelineItemsQuery = { __typename?: 'Query', timelineItems?: Array<{ __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null }> | null };
 
 export type FooQueryVariables = Exact<{ [key: string]: never; }>;
 

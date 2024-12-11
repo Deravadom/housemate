@@ -1,0 +1,10 @@
+query timelineItems {
+  timelineItems {
+    id
+    title
+    body
+    color
+    dueAt
+    frequency
+  }
+}
