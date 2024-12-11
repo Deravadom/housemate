@@ -8,14 +8,29 @@ import {
   createHttpLink,
   InMemoryCache
 } from "@apollo/client"
+import { setContext } from '@apollo/client/link/context';
+import { ToastContainer } from 'react-toastify';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
-})
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('housemate-bearer');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
-})
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,7 +38,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+        <App />
+      <ToastContainer/>
     </ApolloProvider>
   </React.StrictMode>
 );
