@@ -6,7 +6,7 @@ import AuthProvider from './components/auth/AuthProvider';
 import AuthedRoute from './components/auth/AuthedRoute';
 import TestApi from './components/TestApi';
 import TimelinePage from './components/timeline/TimelinePage';
-import Header from './components/Header';
+import Header from './components/header';
 import routes from './routes';
 import LeftoversPage from './components/leftovers/LeftoversPage';
 
