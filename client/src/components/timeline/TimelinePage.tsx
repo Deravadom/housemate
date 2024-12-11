@@ -1,10 +1,9 @@
-import CreateItemForm from "./CreateItemForm"
+import CreateItemForm from "./forms/CreateItemForm"
 import Timeline from "./Timeline"
 
 const TimelinePage = () => {
   return (
-    <div className="flex-column">
-      <CreateItemForm />
+    <div className="flex flex-column">
       <Timeline />
     </div>
   )

@@ -4,11 +4,21 @@ module Queries
 
     included do
       field :timeline_items, [Types::TimelineItemType, null: false], null: true
+
+      field :timeline_item, Types::TimelineItemType, null: false do
+        argument :id, GraphQL::Types::ID
+      end
     end
 
     def timeline_items
-      return unless context[:current_user]
-      TimelineItem.all
+      return unless (user = context[:current_user])
+      TimelineItem.where(household: user.households).order(:id)
+    end
+
+    def timeline_item(id: )
+      return unless (user = context[:current_user])
+
+      user.timeline_items.find(id)
     end
   end
 end

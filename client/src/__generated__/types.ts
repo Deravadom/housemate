@@ -19,6 +19,8 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   createTimelineItem?: Maybe<TimelineItem>;
+  deleteTimelineItem: Scalars['Boolean']['output'];
+  editTimelineItem: TimelineItem;
   login?: Maybe<Scalars['JSON']['output']>;
   signup?: Maybe<Scalars['JSON']['output']>;
   /** An example field added by the generator */
@@ -32,6 +34,22 @@ export type MutationCreateTimelineItemArgs = {
   dueAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
   frequencyUnit?: InputMaybe<Scalars['String']['input']>;
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
+  title: Scalars['String']['input'];
+};
+
+
+export type MutationDeleteTimelineItemArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationEditTimelineItemArgs = {
+  body?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  dueAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyValue?: InputMaybe<Scalars['Int']['input']>;
+  id: Scalars['ID']['input'];
   title: Scalars['String']['input'];
 };
 
@@ -53,7 +71,13 @@ export type Query = {
   foo?: Maybe<Scalars['String']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
+  timelineItem: TimelineItem;
   timelineItems?: Maybe<Array<TimelineItem>>;
+};
+
+
+export type QueryTimelineItemArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type TimelineItem = {
@@ -87,6 +111,26 @@ export type CreateTimelineItemMutationVariables = Exact<{
 
 export type CreateTimelineItemMutation = { __typename?: 'Mutation', createTimelineItem?: { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null } | null };
 
+export type DeleteTimelineItemMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteTimelineItemMutation = { __typename?: 'Mutation', deleteTimelineItem: boolean };
+
+export type EditTimelineItemMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  title: Scalars['String']['input'];
+  body?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyValue?: InputMaybe<Scalars['Int']['input']>;
+  dueAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+}>;
+
+
+export type EditTimelineItemMutation = { __typename?: 'Mutation', editTimelineItem: { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null } };
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -104,6 +148,13 @@ export type TestFieldQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TestFieldQuery = { __typename?: 'Query', testField: string };
+
+export type TimelineItemQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type TimelineItemQuery = { __typename?: 'Query', timelineItem: { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null } };
 
 export type TimelineItemsQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -1,5 +1,4 @@
 import { CSSProperties } from 'react';
-import Header from './components/header';
 import { BG_COLOR, FONT_COLOR } from './styles.class.names';
 import { Routes, Route } from 'react-router-dom';
 import AuthPage from './components/auth/AuthPage';
@@ -7,6 +6,7 @@ import AuthProvider from './components/auth/AuthProvider';
 import AuthedRoute from './components/auth/AuthedRoute';
 import TestApi from './components/TestApi';
 import TimelinePage from './components/timeline/TimelinePage';
+import Header from './components/Header';
 
 const style: CSSProperties = {
   minHeight: '100vh',

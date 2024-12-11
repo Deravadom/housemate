@@ -14,12 +14,15 @@ export type Option = {
 
 type Props = {
   options: Option[]
+  className?: string
 }
 
 const DropMenu = ({
-  options
+  options,
+  className
 }: Props) => {
   return (
+    <div className={className}>
       <Root>
         <Trigger asChild>
           <button aria-label="Main Menu">
@@ -28,13 +31,14 @@ const DropMenu = ({
         </Trigger>
 
         <Portal>
-          <Content sideOffset={5} className="bg-white ba b--gray">
+          <Content sideOffset={5} className="bg-white ba b--gray min-h-100">
             {options.map(({ label, onSelect }, i) => (
               <Item key={`${label}-${i}`} onClick={onSelect}>{label}</Item>
             ))}
           </Content>
         </Portal>
       </Root>
+    </div>
   )
 }
 

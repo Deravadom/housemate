@@ -1,34 +1,49 @@
-import { HTMLInputTypeAttribute } from "react"
-import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form"
+import { CSSProperties, HTMLInputTypeAttribute } from "react"
+import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+import Error, { ErrorProps } from "./Error"
+import Label, { LabelProps } from "./Label"
 
-type Props<T extends FieldValues> = {
-  label: string
-  fieldName: Path<T>
-  required?: boolean
-  errorField: FieldError | undefined
-  errorMessage?: string
-  register: UseFormRegister<T>
-  type?: HTMLInputTypeAttribute
-}
+export type FormInputProps<T extends FieldValues> =
+  LabelProps & ErrorProps & {
+    fieldName: Path<T>
+    inputClass?: string
+    inputStyle?: CSSProperties
+    required?: boolean
+    placeholder?: string
+    register: UseFormRegister<T>
+    type?: HTMLInputTypeAttribute
+  }
 const FormInput = <T extends FieldValues,>({
-  label,
   fieldName,
+  label,
+  labelClass,
+  inputClass,
+  inputStyle,
   required,
+  placeholder,
   errorField,
   errorMessage = "Required",
+  errorClass,
   register,
-  type
-}: Props<T>) => {
+  type,
+  errorSpaceClass
+}: FormInputProps<T>) => {
   const valueAsNumber = type === 'number'
   return (
     <>
-      <label>{label}</label>
+      {label && <Label {...{ label, labelClass }} />}
       <input
         type={type}
         {...register(fieldName, { required: required, valueAsNumber })}
         aria-invalid={errorField ? "true" : false}
+        placeholder={placeholder}
+        aria-placeholder={placeholder}
+        className={inputClass}
+        style={inputStyle}
       />
-      {required && errorField?.type === "required" && <p role="alert">{errorMessage}</p>}
+      {required && (
+        <Error {...{ errorField, errorClass, errorMessage, errorSpaceClass }} />
+      )}
     </>
   )
 }

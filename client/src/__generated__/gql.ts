@@ -16,9 +16,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}": types.TimelineItemFragmentDoc,
     "mutation createTimelineItem($title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  createTimelineItem(\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.CreateTimelineItemDocument,
+    "mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}": types.DeleteTimelineItemDocument,
+    "mutation editTimelineItem($id: ID!, $title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.EditTimelineItemDocument,
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
     "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}": types.CurrentUserDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
+    "query timelineItem($id: ID!) {\n  timelineItem(id: $id) {\n    ...TimelineItem\n  }\n}": types.TimelineItemDocument,
     "query timelineItems {\n  timelineItems {\n    ...TimelineItem\n  }\n}": types.TimelineItemsDocument,
     "query foo {\n  foo\n}": types.FooDocument,
 };
@@ -48,6 +51,14 @@ export function gql(source: "mutation createTimelineItem($title: String!, $body:
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}"): (typeof documents)["mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "mutation editTimelineItem($id: ID!, $title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}"): (typeof documents)["mutation editTimelineItem($id: ID!, $title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}"): (typeof documents)["mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -57,6 +68,10 @@ export function gql(source: "query currentUser {\n  currentUser {\n    email\n  
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "query testField {\n  testField\n}"): (typeof documents)["query testField {\n  testField\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query timelineItem($id: ID!) {\n  timelineItem(id: $id) {\n    ...TimelineItem\n  }\n}"): (typeof documents)["query timelineItem($id: ID!) {\n  timelineItem(id: $id) {\n    ...TimelineItem\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

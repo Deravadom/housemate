@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import SwipeToRevealActions from 'react-swipe-to-reveal-actions/dist/esm/SwipeToRevealActions'
 import useToggle from '../../hooks/useToggle'
+import DropMenu, { Option } from '../dropdown/DropMenu'
+import Modal from '../modal/Modal'
+import DeleteItemForm from './forms/DeleteItemForm'
+import EditItemForm from './forms/EditItemForm'
 
 type FrequencyUnit = 'day' | 'week' | 'month' | 'year'
 
 export type ItemProps = {
+  id: string
   title: string
   body?: string | null
   // frequencyUnit: FrequencyUnit
@@ -15,11 +18,8 @@ export type ItemProps = {
   color?: string | null
 }
 
-const ActionButton = () => (
-  <div>Hi Katie</div>
-)
-
 const Item = ({
+  id,
   title,
   body,
   // frequencyUnit,
@@ -29,39 +29,36 @@ const Item = ({
   dueAt,
   color
 }: ItemProps) => {
-  const [open, _, setOpen] = useToggle(false)
-  const [showDetails, toggleShowDetails, setShowDetails] = useToggle(false)
+  const [showDetails, toggleShowDetails] = useToggle()
+  const [trashOpen, toggleTrash] = useToggle()
+  const [editOpen, toggleEdit] = useToggle()
 
-  const onOpen = () => {
-    setOpen(true)
-    setShowDetails(false)
-  }
-
-  const onClose = () => {
-    setOpen(false)
-  }
+  const options: Option[] = [
+    { label: "Delete", onSelect: () => toggleTrash() },
+    { label: "Edit", onSelect: () => toggleEdit() }
+  ]
 
   return (
-    <div className={`flex flex-column w-75 justify-center ba b--${color} mv1 mh2`} onClick={toggleShowDetails}>
-      <SwipeToRevealActions
-        actionButtons={[{ content: <ActionButton />, onClick: () => window.alert('click') }]}
-        actionButtonMinWidth={70}
-        onOpen={onOpen}
-        onClose={onClose}
-        // containerStyle={{zIndex: 0}}
-      >
-        <h1>{title}</h1>
-      </SwipeToRevealActions>
-      {showDetails && !open && (
-        <div>
-          {body && <p>{body}</p>}
-          {/* <p>{frequencyValue} {frequencyUnit}</p>
+    <div className={`flex flex-row justify-between w-85 ba b--${color} mv2 mh2`}>
+      <div className={`flex flex-column justify-center`} onClick={toggleShowDetails}>
+        <span className='f3 ml1'>{title}</span>
+        {showDetails && (
+          <div>
+            {body && <p>{body}</p>}
+            {/* <p>{frequencyValue} {frequencyUnit}</p>
           <p>{lastCompletedAt?.toLocaleDateString()}</p> */}
-          {frequency && <p>{frequency}</p>}
-          {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
-        </div>
-
-      )}
+            {frequency && <p>{frequency}</p>}
+            {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
+          </div>
+        )}
+      </div>
+      <DropMenu options={options} />
+      <Modal open={trashOpen} setOpen={toggleTrash}>
+        <DeleteItemForm id={id} />
+      </Modal>
+      <Modal open={editOpen} setOpen={toggleEdit}>
+        <EditItemForm id={id} />
+      </Modal>
     </div>
   )
 }

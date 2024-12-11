@@ -1,12 +1,13 @@
-import { CSSProperties, Dispatch, PropsWithChildren, SetStateAction, useEffect, useRef, useState } from "react"
+import { createContext, CSSProperties, Dispatch, PropsWithChildren, SetStateAction, useEffect, useRef, useState } from "react"
+import useToggle from "../../hooks/useToggle"
 
-const rootStyle: CSSProperties = {
+const backgroundStyle: CSSProperties = {
   position: "absolute",
-  zIndex: 999,
+  zIndex: 900,
   minHeight: "100%",
   minWidth: "100%",
   backgroundColor: "grey",
-  opacity: 0.4
+  opacity: 0.5,
 }
 
 const containerStyle: CSSProperties = {
@@ -15,9 +16,15 @@ const containerStyle: CSSProperties = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   border: "2px solid black",
-  minWidth: "30%",
-  minHeight: "30%"
+  minWidth: "75%",
+  minHeight: "50%",
+  zIndex: 901,
+  backgroundColor: "white"
 }
+
+export const ModalContext = createContext({
+  close: () => {}
+})
 
 type Props = {
   open: boolean
@@ -33,14 +40,17 @@ const Modal = ({
     return <></>
   }
 
+  const close = () => setOpen(false)
+
   return (
-    <div style={rootStyle} onClick={() => setOpen(false)}>
+    <ModalContext.Provider value={{close}}>
       <div style={containerStyle} onClick={e => {
         e.stopPropagation()
       }}>
         {children}
       </div>
-    </div>
+      <div style={backgroundStyle} onClick={close} />
+    </ModalContext.Provider>
   )
 }
 
