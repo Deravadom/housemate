@@ -10,6 +10,7 @@ import {
 } from "@apollo/client"
 import { setContext } from '@apollo/client/link/context';
 import { ToastContainer } from 'react-toastify';
+import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
@@ -38,8 +39,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+      <BrowserRouter>
         <App />
-      <ToastContainer/>
+      </BrowserRouter>
+      <ToastContainer />
     </ApolloProvider>
   </React.StrictMode>
 );

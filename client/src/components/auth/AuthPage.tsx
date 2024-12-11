@@ -1,8 +1,13 @@
 import LoginForm from "./LoginForm";
+import {To} from "react-router-dom"
 
-const AuthPage = () => {
+type Props = {
+  to: To
+}
+
+const AuthPage = ({to}:Props) => {
   return (
-    <LoginForm />
+    <LoginForm to={to}/>
   )
 }
 
