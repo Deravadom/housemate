@@ -83,6 +83,7 @@ GEM
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.8)
     bootsnap (1.18.4)
@@ -113,6 +114,8 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.8.2)
+    jwt (2.9.3)
+      base64
     language_server-protocol (3.17.0.3)
     logger (1.6.1)
     loofah (2.23.1)
@@ -266,10 +269,12 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 3.2)
+  bcrypt (~> 3.1)
   bootsnap
   brakeman
   debug
   graphql (~> 2.3)
+  jwt (~> 2.9)
   omniauth (~> 2.1)
   pg (~> 1.1)
   puma (>= 5.0)
