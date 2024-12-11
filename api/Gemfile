@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 7.1.0"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
@@ -47,3 +47,11 @@ gem "graphql", "~> 2.3"
 gem "devise", "~> 4.9"
 
 gem "annotate", "~> 3.2"
+
+gem "rack-cors", "~> 2.0"
+
+gem "graphql_devise", "~>1.5"
+
+gem "omniauth", "~> 2.1"
+
+gem "devise_token_auth", "~> 1.2"
