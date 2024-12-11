@@ -14,8 +14,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
-    "mutation userLogin($email: String!, $password: String!) {\n  userLogin(email: $email, password: $password) {\n    credentials {\n      accessToken\n    }\n  }\n}": types.UserLoginDocument,
     "query foo {\n  foo\n}": types.FooDocument,
 };
 
@@ -36,11 +36,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query testField {\n  testField\n}"): (typeof documents)["query testField {\n  testField\n}"];
+export function gql(source: "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}"): (typeof documents)["mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "mutation userLogin($email: String!, $password: String!) {\n  userLogin(email: $email, password: $password) {\n    credentials {\n      accessToken\n    }\n  }\n}"): (typeof documents)["mutation userLogin($email: String!, $password: String!) {\n  userLogin(email: $email, password: $password) {\n    credentials {\n      accessToken\n    }\n  }\n}"];
+export function gql(source: "query testField {\n  testField\n}"): (typeof documents)["query testField {\n  testField\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

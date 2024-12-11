@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useForm, SubmitHandler } from "react-hook-form"
-import { UserLoginDocument, MutationUserLoginArgs } from "../../__generated__/graphql";
+import { LoginDocument, MutationLoginArgs } from "../../__generated__/graphql";
 import { toast } from "react-toastify";
 
 const defaultValues = {
@@ -9,16 +9,16 @@ const defaultValues = {
 }
 
 const LoginForm = () => {
-  const [login] = useMutation(UserLoginDocument)
-  const { register, handleSubmit, formState: { errors } } = useForm<MutationUserLoginArgs>({defaultValues})
-  const onSubmit: SubmitHandler<MutationUserLoginArgs> = (data) => {
+  const [login] = useMutation(LoginDocument)
+  const { register, handleSubmit, formState: { errors } } = useForm<MutationLoginArgs>({defaultValues})
+  const onSubmit: SubmitHandler<MutationLoginArgs> = (data) => {
     console.log(data)
     login({variables: data}).then(res => {
       console.log(res)
-      localStorage.setItem('housemate-bearer', res.data?.userLogin?.credentials.accessToken!)
+      localStorage.setItem('housemate-bearer', res.data?.login?.token)
       toast.success('Successfully Logged In!')
-    }).catch((e) => {
-      toast.error(e)
+    }).catch(() => {
+      toast.error("Login failed")
     })
   }
 

@@ -4,7 +4,7 @@ module Queries
 
     included do
       field :foo, String
-      field :current_user, Types::User
+      field :current_user, Types::UserType
     end
 
     def current_user
