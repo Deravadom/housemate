@@ -1,4 +1,3 @@
-
 export const capitalize = (word: string) =>
     `${word[1].toUpperCase()}${word.slice(2)}`
 

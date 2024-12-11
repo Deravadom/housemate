@@ -22,10 +22,9 @@ const DropMenu = ({
   className
 }: Props) => {
   return (
-    <div className={className}>
       <Root>
         <Trigger asChild>
-          <button aria-label="Main Menu">
+          <button aria-label="Main Menu" className={className}>
             <HamburgerMenuIcon />
           </button>
         </Trigger>
@@ -33,12 +32,11 @@ const DropMenu = ({
         <Portal>
           <Content sideOffset={5} className="bg-white ba b--gray min-h-100">
             {options.map(({ label, onSelect }, i) => (
-              <Item key={`${label}-${i}`} onClick={onSelect}>{label}</Item>
+              <Item key={`${label}-${i}`} onClick={onSelect} className="mv2 h2 w4 self-center tc b--grey ba mh2">{label}</Item>
             ))}
           </Content>
         </Portal>
       </Root>
-    </div>
   )
 }
 
