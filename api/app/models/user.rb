@@ -19,4 +19,7 @@ class User < ApplicationRecord
   # include BCrypt
   has_secure_password :password, validations: false
   validates :email, presence: true, uniqueness: true
+  
+  has_and_belongs_to_many :households
+  has_many :timeline_items
 end
