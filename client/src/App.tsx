@@ -17,7 +17,7 @@ const style: CSSProperties = {
 
 const App = () => {
   return (
-    <div className='flex-column h-100-l' style={style} >
+    <div style={style} >
       <Header />
       <AuthProvider>
         <Routes>

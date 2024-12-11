@@ -48,6 +48,7 @@ const Item = ({
         actionButtonMinWidth={70}
         onOpen={onOpen}
         onClose={onClose}
+        // containerStyle={{zIndex: 0}}
       >
         <h1>{title}</h1>
       </SwipeToRevealActions>
