@@ -7,9 +7,9 @@ const Header = () => {
     navigate("/login")
   }
   return (
-    <div className="f1 flex flex-row justify-center bg-moon-gray w-100">
-      <span className="w50">Housemate TEST API</span>
-      <button className="w3 f5 mv1 mh1" onClick={logout}>Logout</button>
+    <div className="f1 flex flex-row justify-between bg-moon-gray w-100">
+      <span className="w50">Housemate</span>
+      <button className="w3 h2 mh2 f6 self-center" onClick={logout}>Logout</button>
     </div>
   )
 }

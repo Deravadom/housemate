@@ -5,7 +5,6 @@ import useToggle from '../../hooks/useToggle'
 type FrequencyUnit = 'day' | 'week' | 'month' | 'year'
 
 export type ItemProps = {
-  id: string
   title: string
   body?: string | null
   // frequencyUnit: FrequencyUnit
@@ -21,7 +20,6 @@ const ActionButton = () => (
 )
 
 const Item = ({
-  id, 
   title,
   body,
   // frequencyUnit,
@@ -44,14 +42,14 @@ const Item = ({
   }
 
   return (
-    <div className='flex flex-column w-100 justify-center ba b--red mv1 mh2' onClick={toggleShowDetails}>
-      <SwipeToRevealActions 
-        actionButtons={[{content: <ActionButton />, onClick: () => window.alert('click')}]} 
+    <div className={`flex flex-column w-100 justify-center ba b--${color} mv1 mh2`} onClick={toggleShowDetails}>
+      <SwipeToRevealActions
+        actionButtons={[{ content: <ActionButton />, onClick: () => window.alert('click') }]}
         actionButtonMinWidth={70}
         onOpen={onOpen}
         onClose={onClose}
       >
-      <h1>{title}</h1>
+        <h1>{title}</h1>
       </SwipeToRevealActions>
       {showDetails && !open && (
         <div>
@@ -61,7 +59,7 @@ const Item = ({
           {frequency && <p>{frequency}</p>}
           {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
         </div>
-      
+
       )}
     </div>
   )

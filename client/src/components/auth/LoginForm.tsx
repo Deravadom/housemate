@@ -11,9 +11,9 @@ const defaultValues = {
 type Props = {
   to: To
 }
-const LoginForm = ({to}: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<MutationLoginArgs>({defaultValues})
-  const {login} = useAuth();
+const LoginForm = ({ to }: Props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<MutationLoginArgs>({ defaultValues })
+  const { login } = useAuth();
 
   const onSubmit: SubmitHandler<MutationLoginArgs> = (data) => {
     console.log(data)
@@ -26,8 +26,8 @@ const LoginForm = ({to}: Props) => {
       <input
         {...register("email", { required: true })}
         aria-invalid={errors.email ? "true" : "false"}
-        />
-        {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
+      />
+      {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
       <label>Password</label>
       <input
         {...register("password", { required: true })}

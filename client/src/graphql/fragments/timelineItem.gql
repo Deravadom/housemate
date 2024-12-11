@@ -1,0 +1,8 @@
+fragment TimelineItem on TimelineItem {
+  id
+  title
+  body
+  color
+  dueAt
+  frequency
+}

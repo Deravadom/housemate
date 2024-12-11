@@ -3,6 +3,7 @@
 module Types
   class MutationType < Types::BaseObject
     include Mutations::UserMutationType
+    include Mutations::TimelineMutationType
     
     field :test_field, String, null: false, description: "An example field added by the generator"
     

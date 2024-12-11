@@ -1,0 +1,20 @@
+# import TimelineItem from "../fragments/timelineItem.gql"
+mutation createTimelineItem(
+  $title: String!,
+  $body: String,
+  $color: String,
+  $frequencyUnit: String,
+  $frequencyValue: Int,
+  $dueAt: ISO8601DateTime
+) {
+  createTimelineItem(
+    title: $title,
+    body: $body,
+    color: $color,
+    frequencyUnit: $frequencyUnit,
+    frequencyValue: $frequencyValue,
+    dueAt: $dueAt
+  ) { 
+    ...TimelineItem
+  }
+}

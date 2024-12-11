@@ -18,10 +18,21 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createTimelineItem?: Maybe<TimelineItem>;
   login?: Maybe<Scalars['JSON']['output']>;
   signup?: Maybe<Scalars['JSON']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
+};
+
+
+export type MutationCreateTimelineItemArgs = {
+  body?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  dueAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyValue?: InputMaybe<Scalars['Int']['input']>;
+  title: Scalars['String']['input'];
 };
 
 
@@ -60,6 +71,20 @@ export type User = {
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
 };
+
+export type TimelineItemFragment = { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null };
+
+export type CreateTimelineItemMutationVariables = Exact<{
+  title: Scalars['String']['input'];
+  body?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyValue?: InputMaybe<Scalars['Int']['input']>;
+  dueAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+}>;
+
+
+export type CreateTimelineItemMutation = { __typename?: 'Mutation', createTimelineItem?: { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null } | null };
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String']['input'];

@@ -1,10 +1,7 @@
+# import TimelineItem from "../fragments/timelineItem.gql"
+
 query timelineItems {
   timelineItems {
-    id
-    title
-    body
-    color
-    dueAt
-    frequency
+    ...TimelineItem
   }
 }

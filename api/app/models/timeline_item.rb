@@ -14,6 +14,6 @@
 #
 class TimelineItem < ApplicationRecord
   def frequency
-    frequency_value.send(frequency_unit).to_s
+    "#{frequency_value} #{frequency_unit}"
   end
 end
