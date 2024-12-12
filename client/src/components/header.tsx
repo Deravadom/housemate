@@ -6,6 +6,18 @@ import CreateItemForm from "./timeline/forms/CreateItemForm";
 import { routeName } from "../utils/stringUtils";
 import routes from "../routes";
 
+const DynamicCreate = () => {
+  const pathname = window.location.pathname;
+
+  if(pathname === "/leftovers") {
+    return <></>
+  }
+
+  return (
+    <CreateItemForm />
+  )
+}
+
 const Header = () => {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
@@ -34,7 +46,7 @@ const Header = () => {
         <button className="w50 f3-l f2 mh3 w3 h3 br4" onClick={() => setOpen(true)}>+</button>
         <DropMenu options={options} className="w3 h3 br3 mr3 f3"/>
         <Modal open={open} setOpen={setOpen}>
-          <CreateItemForm />
+          <DynamicCreate />
         </Modal>
       </div>
     </>
