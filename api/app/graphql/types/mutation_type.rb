@@ -4,6 +4,7 @@ module Types
   class MutationType < Types::BaseObject
     include Mutations::UserMutationType
     include Mutations::TimelineMutationType
+    include Mutations::LeftoverMutationType
     
     field :test_field, String, null: false, description: "An example field added by the generator"
     

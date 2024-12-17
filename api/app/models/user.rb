@@ -22,4 +22,5 @@ class User < ApplicationRecord
   
   has_and_belongs_to_many :households
   has_many :timeline_items
+  has_many :leftovers
 end

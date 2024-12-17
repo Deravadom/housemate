@@ -16,15 +16,35 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
+export type Leftover = {
+  __typename?: 'Leftover';
+  allergens?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  trashBy?: Maybe<Scalars['ISO8601DateTime']['output']>;
+  useBy?: Maybe<Scalars['ISO8601DateTime']['output']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createLeftover?: Maybe<Leftover>;
   createTimelineItem?: Maybe<TimelineItem>;
+  deleteLeftover: Scalars['Boolean']['output'];
   deleteTimelineItem: Scalars['Boolean']['output'];
+  editLeftover: Leftover;
   editTimelineItem: TimelineItem;
   login?: Maybe<Scalars['JSON']['output']>;
   signup?: Maybe<Scalars['JSON']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
+};
+
+
+export type MutationCreateLeftoverArgs = {
+  allergens?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  trashBy: Scalars['ISO8601DateTime']['input'];
+  useBy?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
 };
 
 
@@ -38,8 +58,22 @@ export type MutationCreateTimelineItemArgs = {
 };
 
 
+export type MutationDeleteLeftoverArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationDeleteTimelineItemArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationEditLeftoverArgs = {
+  allergens?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  trashBy: Scalars['ISO8601DateTime']['input'];
+  useBy?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
 };
 
 
@@ -69,10 +103,17 @@ export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
   foo?: Maybe<Scalars['String']['output']>;
+  leftover: Leftover;
+  leftovers?: Maybe<Array<Leftover>>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
   timelineItem: TimelineItem;
   timelineItems?: Maybe<Array<TimelineItem>>;
+};
+
+
+export type QueryLeftoverArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -97,7 +138,19 @@ export type User = {
   name?: Maybe<Scalars['String']['output']>;
 };
 
+export type LeftoverFragment = { __typename?: 'Leftover', id: string, name: string, allergens?: string | null, useBy?: any | null, trashBy?: any | null };
+
 export type TimelineItemFragment = { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, frequency?: string | null };
+
+export type CreateLeftoverMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  trashBy: Scalars['ISO8601DateTime']['input'];
+  allergens?: InputMaybe<Scalars['String']['input']>;
+  useBy?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
+}>;
+
+
+export type CreateLeftoverMutation = { __typename?: 'Mutation', createLeftover?: { __typename?: 'Leftover', id: string, name: string, allergens?: string | null, useBy?: any | null, trashBy?: any | null } | null };
 
 export type CreateTimelineItemMutationVariables = Exact<{
   title: Scalars['String']['input'];
@@ -143,6 +196,11 @@ export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string, name?: string | null } | null };
+
+export type LeftoversQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LeftoversQuery = { __typename?: 'Query', leftovers?: Array<{ __typename?: 'Leftover', id: string, name: string, allergens?: string | null, useBy?: any | null, trashBy?: any | null }> | null };
 
 export type TestFieldQueryVariables = Exact<{ [key: string]: never; }>;
 

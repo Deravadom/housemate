@@ -14,12 +14,15 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "fragment Leftover on Leftover {\n  id\n  name\n  allergens\n  useBy\n  trashBy\n}": types.LeftoverFragmentDoc,
     "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}": types.TimelineItemFragmentDoc,
+    "mutation createLeftover($name: String!, $trashBy: ISO8601DateTime!, $allergens: String, $useBy: ISO8601DateTime) {\n  createLeftover(\n    name: $name\n    trashBy: $trashBy\n    allergens: $allergens\n    useBy: $useBy\n  ) {\n    ...Leftover\n  }\n}": types.CreateLeftoverDocument,
     "mutation createTimelineItem($title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  createTimelineItem(\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.CreateTimelineItemDocument,
     "mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}": types.DeleteTimelineItemDocument,
     "mutation editTimelineItem($id: ID!, $title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.EditTimelineItemDocument,
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
     "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}": types.CurrentUserDocument,
+    "query leftovers {\n  leftovers {\n    ...Leftover\n  }\n}": types.LeftoversDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
     "query timelineItem($id: ID!) {\n  timelineItem(id: $id) {\n    ...TimelineItem\n  }\n}": types.TimelineItemDocument,
     "query timelineItems {\n  timelineItems {\n    ...TimelineItem\n  }\n}": types.TimelineItemsDocument,
@@ -43,7 +46,15 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "fragment Leftover on Leftover {\n  id\n  name\n  allergens\n  useBy\n  trashBy\n}"): (typeof documents)["fragment Leftover on Leftover {\n  id\n  name\n  allergens\n  useBy\n  trashBy\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}"): (typeof documents)["fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "mutation createLeftover($name: String!, $trashBy: ISO8601DateTime!, $allergens: String, $useBy: ISO8601DateTime) {\n  createLeftover(\n    name: $name\n    trashBy: $trashBy\n    allergens: $allergens\n    useBy: $useBy\n  ) {\n    ...Leftover\n  }\n}"): (typeof documents)["mutation createLeftover($name: String!, $trashBy: ISO8601DateTime!, $allergens: String, $useBy: ISO8601DateTime) {\n  createLeftover(\n    name: $name\n    trashBy: $trashBy\n    allergens: $allergens\n    useBy: $useBy\n  ) {\n    ...Leftover\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -64,6 +75,10 @@ export function gql(source: "mutation login($email: String!, $password: String!)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"): (typeof documents)["query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query leftovers {\n  leftovers {\n    ...Leftover\n  }\n}"): (typeof documents)["query leftovers {\n  leftovers {\n    ...Leftover\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
