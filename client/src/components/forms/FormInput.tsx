@@ -1,7 +1,22 @@
-import { CSSProperties, HTMLInputTypeAttribute } from "react"
+import { CSSProperties, HTMLInputTypeAttribute, InputHTMLAttributes } from "react"
 import { FieldValues, Path, UseFormRegister } from "react-hook-form"
 import Error, { ErrorProps } from "./Error"
 import Label, { LabelProps } from "./Label"
+import { useMinDate } from "../../utils/dateUtils"
+
+type MinValue = InputHTMLAttributes<HTMLInputTypeAttribute>["min"]
+const useMin = (min: MinValue, type: HTMLInputTypeAttribute | undefined) => {
+  const today = useMinDate()
+
+  if(!type) return undefined
+  if(min) return min
+
+  switch(type) {
+    case "date": {
+      return today
+    }
+  }
+}
 
 export type FormInputProps<T extends FieldValues> =
   LabelProps & ErrorProps & {
@@ -12,7 +27,9 @@ export type FormInputProps<T extends FieldValues> =
     placeholder?: string
     register: UseFormRegister<T>
     type?: HTMLInputTypeAttribute
+    min?: MinValue
   }
+
 const FormInput = <T extends FieldValues,>({
   fieldName,
   label,
@@ -26,9 +43,12 @@ const FormInput = <T extends FieldValues,>({
   errorClass,
   register,
   type,
+  min,
   errorSpaceClass
 }: FormInputProps<T>) => {
   const valueAsNumber = type === 'number'
+  const minValue = useMin(min, type)
+
   return (
     <>
       {label && <Label {...{ label, labelClass }} />}
@@ -40,6 +60,7 @@ const FormInput = <T extends FieldValues,>({
         aria-placeholder={placeholder}
         className={inputClass}
         style={inputStyle}
+        min={minValue}
       />
       {required && (
         <Error {...{ errorField, errorClass, errorMessage, errorSpaceClass }} />
