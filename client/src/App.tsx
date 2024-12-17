@@ -21,7 +21,6 @@ const style: CSSProperties = {
 const App = () => {
   return (
     <div style={style} >
-      <Header />
       <AuthProvider>
         <Routes>
           <Route path={routes.index} element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
@@ -31,8 +30,6 @@ const App = () => {
           <Route path={routes.testApi} element={<AuthedRoute><TestApi /></AuthedRoute>} />
           <Route path={routes.leftovers} element={<AuthedRoute><LeftoversPage /></AuthedRoute>} />
         </Routes>
-      </AuthProvider>
-      <AuthProvider>
       </AuthProvider>
     </div>
   );

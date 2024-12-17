@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react"
 import { Navigate } from "react-router-dom"
 import { useAuth } from "./AuthProvider"
+import Header from "../header";
 
 const AuthedRoute = ({ children }: PropsWithChildren) => {
   const { token } = useAuth();
@@ -9,7 +10,10 @@ const AuthedRoute = ({ children }: PropsWithChildren) => {
     return <Navigate to="/login" />
   }
 
-  return <>{children}</>
+  return <>
+    <Header />
+    {children}
+  </>
 }
 
 

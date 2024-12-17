@@ -5,20 +5,22 @@ import Modal from "./modal/Modal";
 import CreateItemForm from "./timeline/forms/CreateItemForm";
 import { routeName } from "../utils/stringUtils";
 import routes from "../routes";
+import CaseWrapper from "./CaseWrapper";
+import CreateLeftoverForm from "./leftovers/CreateLeftoverForm";
+
+const cases = {
+  [routes.timeline]: <CreateItemForm />,
+  [routes.leftovers]: <CreateLeftoverForm />
+}
 
 const DynamicCreate = () => {
   const pathname = window.location.pathname;
 
-  if(pathname === "/leftovers") {
-    return <></>
-  }
-
-  return (
-    <CreateItemForm />
-  )
+  return <CaseWrapper expr={pathname} cases={cases} />
 }
 
 const Header = () => {
+  const name = routeName()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
 
@@ -27,24 +29,31 @@ const Header = () => {
     navigate(routes.login)
   }
 
-  const goToDashboard = () => navigate(routes.dashboard)
-
   const options: Option[] = [
     {
       label: "Dashboard",
-      onSelect: goToDashboard
+      onSelect: () => navigate(routes.dashboard)
+    },
+    {
+      label: "Timeline",
+      onSelect: () => navigate(routes.timeline)
+    },
+    {
+      label: "Leftovers",
+      onSelect: () => navigate(routes.leftovers)
     },
     {
       label: "Logout",
       onSelect: logout
     },
-  ]
+  ].filter(({ label }) => label !== name)
+
   return (
     <>
       <div className="f1 flex flex-row justify-end bg-moon-gray w-100 h3 mb3">
-        <span className="f3 mr-auto self-center">{routeName()}</span>
+        <span className="f3 mr-auto self-center">{name}</span>
         <button className="w50 f3-l f2 mh3 w3 h3 br4" onClick={() => setOpen(true)}>+</button>
-        <DropMenu options={options} className="w3 h3 br3 mr3 f3"/>
+        <DropMenu options={options} className="w3 h3 br3 mr3 f3" />
         <Modal open={open} setOpen={setOpen}>
           <DynamicCreate />
         </Modal>

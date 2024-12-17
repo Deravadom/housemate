@@ -20,21 +20,26 @@ const LoginForm = ({ to }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column w5">
-      <label>Email</label>
-      <input
-        {...register("email", { required: true })}
-        aria-invalid={errors.email ? "true" : "false"}
-      />
-      {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
-      <label>Password</label>
-      <input
-        {...register("password", { required: true })}
-        aria-invalid={errors.password ? "true" : "false"}
-      />
-      {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
-      <input type="submit" value="Log In" />
-    </form>
+    <>
+      <div className="f1 flex flex-row justify-center bg-moon-gray w-100 h3 mb3">
+        <span className="f3 self-center">Welcome to Housemate</span>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column w5">
+        <label>Email</label>
+        <input
+          {...register("email", { required: true })}
+          aria-invalid={errors.email ? "true" : "false"}
+        />
+        {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
+        <label>Password</label>
+        <input
+          {...register("password", { required: true })}
+          aria-invalid={errors.password ? "true" : "false"}
+        />
+        {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
+        <input type="submit" value="Log In" />
+      </form>
+    </>
   )
 }
 
