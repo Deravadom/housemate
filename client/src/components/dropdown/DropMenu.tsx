@@ -22,21 +22,27 @@ const DropMenu = ({
   className
 }: Props) => {
   return (
-      <Root>
-        <Trigger asChild>
-          <button aria-label="Main Menu" className={className}>
-            <HamburgerMenuIcon />
-          </button>
-        </Trigger>
+    <Root>
+      <Trigger asChild>
+        <button aria-label="Main Menu" className={className}>
+          <HamburgerMenuIcon />
+        </button>
+      </Trigger>
 
-        <Portal>
-          <Content sideOffset={5} className="bg-white ba b--gray min-h-100">
-            {options.map(({ label, onSelect }, i) => (
-              <Item key={`${label}-${i}`} onClick={onSelect} className="mv2 h2 w4 self-center tc b--grey ba mh2">{label}</Item>
-            ))}
-          </Content>
-        </Portal>
-      </Root>
+      <Portal>
+        <Content sideOffset={5} className="bg-white ba b--gray min-h-100">
+          {options.map(({ label, onSelect }, i) => (
+            <Item
+              key={`${label}-${i}`}
+              onClick={onSelect}
+              className="mv2 h2 w4 self-center tc b--grey ba mh2"
+            >
+              {label}
+            </Item>
+          ))}
+        </Content>
+      </Portal>
+    </Root>
   )
 }
 
