@@ -39,8 +39,8 @@ const Item = ({
   ]
 
   return (
-    <div 
-      className={`flex flex-row justify-between items-center ba b--white bg-${color} mv2 mh2`} 
+    <div
+      className={`flex flex-row justify-between items-center ba b--white mv2 mh2`}
       onClick={toggleShowDetails}
     >
       <div className={`flex flex-column justify-center`}>
@@ -48,14 +48,13 @@ const Item = ({
         {showDetails && (
           <div>
             {body && <p>{body}</p>}
-            {/* <p>{frequencyValue} {frequencyUnit}</p>
-          <p>{lastCompletedAt?.toLocaleDateString()}</p> */}
+            <p>{lastCompletedAt?.toLocaleDateString()}</p>
             {frequency && <p>{frequency}</p>}
             {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
           </div>
         )}
       </div>
-      <DropMenu options={options} className='mv1 mh1 h2 br3'/>
+      <DropMenu options={options} className='mv1 mh1 h2 br3' />
       <Modal open={trashOpen} setOpen={toggleTrash}>
         <DeleteItemForm id={id} />
       </Modal>

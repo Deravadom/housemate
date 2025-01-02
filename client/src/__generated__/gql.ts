@@ -15,7 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "fragment Leftover on Leftover {\n  id\n  name\n  allergens\n  useBy\n  trashBy\n}": types.LeftoverFragmentDoc,
-    "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}": types.TimelineItemFragmentDoc,
+    "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n  frequencyUnit\n  frequencyValue\n}": types.TimelineItemFragmentDoc,
     "mutation createLeftover($name: String!, $trashBy: ISO8601DateTime!, $allergens: String, $useBy: ISO8601DateTime) {\n  createLeftover(\n    name: $name\n    trashBy: $trashBy\n    allergens: $allergens\n    useBy: $useBy\n  ) {\n    ...Leftover\n  }\n}": types.CreateLeftoverDocument,
     "mutation createTimelineItem($title: String!, $body: String, $color: String, $frequencyUnit: String, $frequencyValue: Int, $dueAt: ISO8601DateTime) {\n  createTimelineItem(\n    title: $title\n    body: $body\n    color: $color\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    dueAt: $dueAt\n  ) {\n    ...TimelineItem\n  }\n}": types.CreateTimelineItemDocument,
     "mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}": types.DeleteTimelineItemDocument,
@@ -50,7 +50,7 @@ export function gql(source: "fragment Leftover on Leftover {\n  id\n  name\n  al
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}"): (typeof documents)["fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n}"];
+export function gql(source: "fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n  frequencyUnit\n  frequencyValue\n}"): (typeof documents)["fragment TimelineItem on TimelineItem {\n  id\n  title\n  body\n  color\n  dueAt\n  frequency\n  frequencyUnit\n  frequencyValue\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
