@@ -35,7 +35,7 @@ const DropMenu = ({
             <Item
               key={`${label}-${i}`}
               onClick={onSelect}
-              className="mv2 h2 w4 self-center tc b--grey ba mh2"
+              className="mv2 h2 w4 self-center tc b--grey ba mh2 flex items-center justify-center"
             >
               {label}
             </Item>
