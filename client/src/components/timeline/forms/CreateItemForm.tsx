@@ -34,7 +34,7 @@ const CreateItemForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column w5 mv2 mh3 justify-around">
-      <span className="f2 b self-center">Create Item</span>
+      <span className="f3 b self-center">Create Item</span>
       <FormInput
         placeholder="Title*"
         inputClass={`${defaultClass}`}

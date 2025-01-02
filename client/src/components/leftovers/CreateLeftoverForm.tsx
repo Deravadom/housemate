@@ -32,7 +32,7 @@ const CreateLeftoverForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column w5 mv2 mh3 justify-around">
-      <span className="f2 b self-center">Create Leftover</span>
+      <span className="f3 b self-center">Create Leftover</span>
       <FormInput
         placeholder="Name"
         fieldName="name"
