@@ -34,8 +34,8 @@ const Item = ({
   const [editOpen, toggleEdit] = useToggle()
 
   const options: Option[] = [
-    { label: "Delete", onSelect: () => toggleTrash() },
-    { label: "Edit", onSelect: () => toggleEdit() }
+    { label: "Edit", onSelect: () => toggleEdit() },
+    { label: "Delete", onSelect: () => toggleTrash() }
   ]
 
   return (
