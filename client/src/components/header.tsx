@@ -55,9 +55,9 @@ const Header = () => {
       <div className="f1 flex flex-row justify-end bg-moon-gray w-100 mb3">
         <span className="f3 mr-auto ml2 self-center">{name}</span>
         {showButton && (
-          <button className="w50 f3-l f2 mh3 mv2 w3 h3 br4" onClick={() => setOpen(true)}>+</button>
+          <button className="w50 f5-l f4 mh3 mv2 w2 h2 br3" onClick={() => setOpen(true)}>+</button>
         )}
-        <DropMenu options={options} className="w3 h3 br3 mr3 f3 mv2" />
+        <DropMenu options={options} className="w2 h2 br3 mr3 f3 mv2" />
         <Modal open={open} setOpen={setOpen}>
           <DynamicCreate />
         </Modal>

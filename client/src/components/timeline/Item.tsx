@@ -55,7 +55,7 @@ const Item = ({
           </div>
         )}
       </div>
-      <DropMenu options={options} className='mv1 mh1 h2'/>
+      <DropMenu options={options} className='mv1 mh1 h2 br3'/>
       <Modal open={trashOpen} setOpen={toggleTrash}>
         <DeleteItemForm id={id} />
       </Modal>
