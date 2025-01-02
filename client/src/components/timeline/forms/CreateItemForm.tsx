@@ -51,19 +51,19 @@ const CreateItemForm = () => {
         {...commonProps}
       />
       <FormInput
-        placeholder="Units"
-        inputClass={`${defaultClass}`}
-        fieldName="frequencyUnit"
-        errorField={errors.frequencyUnit}
-        {...commonProps}
-      />
-      <FormInput
         placeholder="Value"
         inputClass={`${defaultClass}`}
         fieldName="frequencyValue"
         errorField={errors.frequencyValue}
         {...commonProps}
         type="number"
+      />
+      <FormInput
+        placeholder="Units"
+        inputClass={`${defaultClass}`}
+        fieldName="frequencyUnit"
+        errorField={errors.frequencyUnit}
+        {...commonProps}
       />
       <input type="submit" value="Submit" className={`mt3 f3 self-end`} />
     </form>
