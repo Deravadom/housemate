@@ -13,6 +13,8 @@ const backgroundStyle: CSSProperties = {
   minWidth: "100%",
   backgroundColor: "grey",
   opacity: 0.5,
+  top: 0,
+  left: 0
 }
 
 const containerStyle: CSSProperties = {
