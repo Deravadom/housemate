@@ -1,5 +1,3 @@
-import { useContext } from "react"
-import { ModalContext } from "../../modal/Modal"
 import { useMutation } from "@apollo/client"
 import { DeleteTimelineItemDocument } from "../../../__generated__/graphql"
 
@@ -8,7 +6,6 @@ type Props = {
 }
 
 const DeleteItemForm = ({id}: Props) => {
-  const { close } = useContext(ModalContext)
   const [deleteItem] = useMutation(DeleteTimelineItemDocument, {
     variables: { id },
     refetchQueries: ["timelineItems"]
@@ -16,9 +13,9 @@ const DeleteItemForm = ({id}: Props) => {
 
   return (
     <div className="flex flex-column mh3 mv3">
-      <span className="f2 b self-center">Confirm Delete</span>
-      <span className="f3 tc">Are you sure you want to delete this?</span>
-      <input type="submit" value="Delete Item" className="mt5 h3 f3" onClick={() => deleteItem()}/>
+      <span className="f3 b self-center">Confirm Delete</span>
+      <span className="f4 tc">Are you sure you want to delete this?</span>
+      <input type="submit" value="Delete Item" className="mt4 h2 f4" onClick={() => deleteItem()}/>
     </div>
   )
 }

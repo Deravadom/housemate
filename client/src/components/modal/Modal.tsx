@@ -1,5 +1,10 @@
-import { createContext, CSSProperties, Dispatch, PropsWithChildren, SetStateAction, useEffect, useRef, useState } from "react"
-import useToggle from "../../hooks/useToggle"
+import {
+  createContext,
+  CSSProperties,
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction
+} from "react"
 
 const backgroundStyle: CSSProperties = {
   position: "absolute",
@@ -17,13 +22,13 @@ const containerStyle: CSSProperties = {
   transform: "translate(-50%, -50%)",
   border: "2px solid black",
   minWidth: "75%",
-  minHeight: "50%",
+  minHeight: "33%",
   zIndex: 901,
   backgroundColor: "white"
 }
 
 export const ModalContext = createContext({
-  close: () => {}
+  close: () => { }
 })
 
 type Props = {
@@ -43,7 +48,7 @@ const Modal = ({
   const close = () => setOpen(false)
 
   return (
-    <ModalContext.Provider value={{close}}>
+    <ModalContext.Provider value={{ close }}>
       <div style={containerStyle} onClick={e => {
         e.stopPropagation()
       }}>
