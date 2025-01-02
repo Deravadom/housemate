@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import routes from "../../routes"
-import { capitalize, routeName } from "../../utils/stringUtils"
+import { capitalize} from "../../utils/stringUtils"
 
 const { timeline, testApi, leftovers } = routes
-const pages = [timeline, testApi, leftovers]
+const pages = [timeline, leftovers, testApi]
 
 const DashboardPage = () => {
   const navigate = useNavigate()
