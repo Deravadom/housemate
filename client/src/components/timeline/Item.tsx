@@ -39,7 +39,10 @@ const Item = ({
   ]
 
   return (
-    <div className={`flex flex-row justify-between w-85 ba b--${color} mv2 mh2`} onClick={toggleShowDetails}>
+    <div 
+      className={`flex flex-row justify-between items-center ba b--white bg-${color} mv2 mh2`} 
+      onClick={toggleShowDetails}
+    >
       <div className={`flex flex-column justify-center`}>
         <span className='f3 ml1'>{title}</span>
         {showDetails && (
@@ -52,7 +55,7 @@ const Item = ({
           </div>
         )}
       </div>
-      <DropMenu options={options} />
+      <DropMenu options={options} className='mv1 mh1 h2'/>
       <Modal open={trashOpen} setOpen={toggleTrash}>
         <DeleteItemForm id={id} />
       </Modal>

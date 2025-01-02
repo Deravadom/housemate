@@ -16,7 +16,7 @@ const Timeline = () => {
   }
 
   return (
-    <div className='flex flex-column ba b--red'>
+    <div className='flex flex-column w-50-l ml3-l'>
       {items.map(item => <Item {...item} key={item.id} />)}
     </div>
   )
