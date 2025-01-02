@@ -5,7 +5,7 @@ mutation createTimelineItem(
   $color: String,
   $frequencyUnit: String,
   $frequencyValue: Int,
-  $dueAt: ISO8601DateTime
+  $lastCompletedAt: ISO8601DateTime
 ) {
   createTimelineItem(
     title: $title,
@@ -13,7 +13,7 @@ mutation createTimelineItem(
     color: $color,
     frequencyUnit: $frequencyUnit,
     frequencyValue: $frequencyValue,
-    dueAt: $dueAt
+    lastCompletedAt: $lastCompletedAt
   ) { 
     ...TimelineItem
   }

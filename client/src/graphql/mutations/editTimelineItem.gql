@@ -6,7 +6,7 @@ mutation editTimelineItem(
   $color: String,
   $frequencyUnit: String,
   $frequencyValue: Int,
-  $dueAt: ISO8601DateTime
+  $lastCompletedAt: ISO8601DateTime
 ) {
   editTimelineItem(
     id: $id
@@ -15,7 +15,7 @@ mutation editTimelineItem(
     color: $color,
     frequencyUnit: $frequencyUnit,
     frequencyValue: $frequencyValue,
-    dueAt: $dueAt
+    lastCompletedAt: $lastCompletedAt
   ) { 
     ...TimelineItem
   }

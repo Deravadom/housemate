@@ -4,6 +4,7 @@ module Types
     field :title, String, null: false
     field :body, String
     field :due_at, GraphQL::Types::ISO8601DateTime
+    field :last_completed_at, GraphQL::Types::ISO8601DateTime
     field :frequency, String
     field :frequency_unit, String
     field :frequency_value, Integer

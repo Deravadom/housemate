@@ -10,7 +10,7 @@ module Mutations
           argument :color, String
           argument :frequency_unit, String
           argument :frequency_value, Integer
-          argument :due_at, GraphQL::Types::ISO8601DateTime
+          argument :last_completed_at, GraphQL::Types::ISO8601DateTime
         end
       end
 
@@ -22,7 +22,7 @@ module Mutations
           argument :color, String
           argument :frequency_unit, String
           argument :frequency_value, Integer
-          argument :due_at, GraphQL::Types::ISO8601DateTime
+          argument :last_completed_at, GraphQL::Types::ISO8601DateTime
         end
       end
 
