@@ -10,10 +10,16 @@ require 'bcrypt'
 #  tokens          :json
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  household_id    :bigint
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email         (email) UNIQUE
+#  index_users_on_household_id  (household_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (household_id => households.id)
 #
 class User < ApplicationRecord
   # include BCrypt
@@ -21,6 +27,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
   has_and_belongs_to_many :households
+  belongs_to :household
   has_many :timeline_items
   has_many :leftovers
+
+  alias current_household household
 end

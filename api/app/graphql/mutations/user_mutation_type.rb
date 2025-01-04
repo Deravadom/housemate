@@ -23,7 +23,15 @@ module Mutations
     def login(email:, password:)
       user = User.find_by!(email: email)
       return unless user.authenticate(password)
-      create_auth_token(user)
+      
+      token = create_auth_token(user)
+      return token unless user.household_id.blank?
+      
+      if (household = user.households.pluck(:id).first).present?
+        user.update_column(household__id: household.id)
+      end
+
+      token
     end
 
     # private

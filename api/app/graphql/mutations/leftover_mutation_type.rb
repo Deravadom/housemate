@@ -29,7 +29,7 @@ module Mutations
 
     def create_leftover(**leftover_args)
       return unless (user = context[:current_user])
-      leftover = Leftover.create!(**leftover_args, user: user, household: user.households.first)
+      leftover = Leftover.create!(**leftover_args, user: user, household: user.household)
     end
 
     def edit_leftover(id:, **leftover_args)
