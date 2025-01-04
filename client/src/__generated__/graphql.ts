@@ -29,6 +29,12 @@ export enum FrequencyEnum {
   Weeks = 'weeks'
 }
 
+export type Household = {
+  __typename?: 'Household';
+  name: Scalars['String']['output'];
+  users?: Maybe<Array<User>>;
+};
+
 export type Leftover = {
   __typename?: 'Leftover';
   allergens?: Maybe<Scalars['String']['output']>;
@@ -44,9 +50,11 @@ export type Mutation = {
   createTimelineItem?: Maybe<TimelineItem>;
   deleteLeftover: Scalars['Boolean']['output'];
   deleteTimelineItem: Scalars['Boolean']['output'];
+  editHousehold?: Maybe<Household>;
   editLeftover: Leftover;
   editTimelineItem: TimelineItem;
   login?: Maybe<Scalars['JSON']['output']>;
+  setHousehold?: Maybe<Household>;
   signup?: Maybe<Scalars['JSON']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
@@ -80,6 +88,11 @@ export type MutationDeleteTimelineItemArgs = {
 };
 
 
+export type MutationEditHouseholdArgs = {
+  name: Scalars['String']['input'];
+};
+
+
 export type MutationEditLeftoverArgs = {
   allergens?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -105,6 +118,11 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationSetHouseholdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationSignupArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -114,6 +132,7 @@ export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
   foo?: Maybe<Scalars['String']['output']>;
+  households?: Maybe<Array<Household>>;
   leftover: Leftover;
   leftovers?: Maybe<Array<Leftover>>;
   /** An example field added by the generator */
@@ -213,10 +232,22 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login?: any | null };
 
+export type SetHouseholdMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type SetHouseholdMutation = { __typename?: 'Mutation', setHousehold?: { __typename?: 'Household', name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null } | null };
+
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string, name?: string | null } | null };
+
+export type HouseholdsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HouseholdsQuery = { __typename?: 'Query', households?: Array<{ __typename?: 'Household', name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null }> | null };
 
 export type LeftoversQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -261,7 +292,9 @@ export const CreateTimelineItemDocument = {"kind":"Document","definitions":[{"ki
 export const DeleteTimelineItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"deleteTimelineItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteTimelineItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode<DeleteTimelineItemMutation, DeleteTimelineItemMutationVariables>;
 export const EditTimelineItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"editTimelineItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"body"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"frequencyUnit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"FrequencyEnum"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"frequencyValue"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"lastCompletedAt"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ISO8601DateTime"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"editTimelineItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"Argument","name":{"kind":"Name","value":"body"},"value":{"kind":"Variable","name":{"kind":"Name","value":"body"}}},{"kind":"Argument","name":{"kind":"Name","value":"frequencyUnit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"frequencyUnit"}}},{"kind":"Argument","name":{"kind":"Name","value":"frequencyValue"},"value":{"kind":"Variable","name":{"kind":"Name","value":"frequencyValue"}}},{"kind":"Argument","name":{"kind":"Name","value":"lastCompletedAt"},"value":{"kind":"Variable","name":{"kind":"Name","value":"lastCompletedAt"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TimelineItem"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TimelineItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TimelineItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"body"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"dueAt"}},{"kind":"Field","name":{"kind":"Name","value":"lastCompletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"frequency"}},{"kind":"Field","name":{"kind":"Name","value":"frequencyUnit"}},{"kind":"Field","name":{"kind":"Name","value":"frequencyValue"}}]}}]} as unknown as DocumentNode<EditTimelineItemMutation, EditTimelineItemMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const SetHouseholdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"setHousehold"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setHousehold"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]} as unknown as DocumentNode<SetHouseholdMutation, SetHouseholdMutationVariables>;
 export const CurrentUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"currentUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currentUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CurrentUserQuery, CurrentUserQueryVariables>;
+export const HouseholdsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"households"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"households"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]} as unknown as DocumentNode<HouseholdsQuery, HouseholdsQueryVariables>;
 export const LeftoversDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"leftovers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"leftovers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Leftover"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Leftover"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Leftover"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"allergens"}},{"kind":"Field","name":{"kind":"Name","value":"useBy"}},{"kind":"Field","name":{"kind":"Name","value":"trashBy"}}]}}]} as unknown as DocumentNode<LeftoversQuery, LeftoversQueryVariables>;
 export const TestFieldDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"testField"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"testField"}}]}}]} as unknown as DocumentNode<TestFieldQuery, TestFieldQueryVariables>;
 export const TimelineItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"timelineItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"timelineItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"TimelineItem"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TimelineItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TimelineItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"body"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"dueAt"}},{"kind":"Field","name":{"kind":"Name","value":"lastCompletedAt"}},{"kind":"Field","name":{"kind":"Name","value":"frequency"}},{"kind":"Field","name":{"kind":"Name","value":"frequencyUnit"}},{"kind":"Field","name":{"kind":"Name","value":"frequencyValue"}}]}}]} as unknown as DocumentNode<TimelineItemQuery, TimelineItemQueryVariables>;

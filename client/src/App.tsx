@@ -10,6 +10,7 @@ import TimelinePage from './components/timeline/TimelinePage';
 import LeftoversPage from './components/leftovers/LeftoversPage';
 import DashboardPage from './components/dashboard/DashboardPage';
 import Header from './components/header';
+import HouseholdsPage from './components/households/HouseholdsPage';
 
 const style: CSSProperties = {
   minHeight: '100vh',
@@ -29,6 +30,7 @@ const App = () => {
           <Route path={routes.login} element={<AuthPage to={routes.dashboard} />} />
           <Route path={routes.testApi} element={<AuthedRoute><TestApi /></AuthedRoute>} />
           <Route path={routes.leftovers} element={<AuthedRoute><LeftoversPage /></AuthedRoute>} />
+          <Route path={routes.households} element={<AuthedRoute><HouseholdsPage /></AuthedRoute>} />
         </Routes>
       </AuthProvider>
     </div>

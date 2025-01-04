@@ -4,5 +4,6 @@ export default {
     timeline: "/timeline",
     login: "/login",
     testApi: "/test-api",
-    leftovers: "/leftovers"
+    leftovers: "/leftovers",
+    households: "/households"
 }

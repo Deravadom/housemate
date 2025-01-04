@@ -9,8 +9,8 @@ export type ItemProps = {
   id: string
   title: string
   body?: string | null
-  frequencyUnit?: FrequencyEnum | string | null
-  frequencyValue?: number | null
+  // frequencyUnit?: FrequencyEnum | string | null
+  // frequencyValue?: number | null
   frequency?: string | null
   lastCompletedAt?: Date | null
   dueAt?: Date | null
@@ -21,8 +21,8 @@ const Item = ({
   id,
   title,
   body,
-  frequencyUnit,
-  frequencyValue,
+  // frequencyUnit,
+  // frequencyValue,
   frequency,
   lastCompletedAt,
   dueAt,
