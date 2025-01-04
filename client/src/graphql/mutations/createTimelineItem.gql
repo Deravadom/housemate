@@ -2,15 +2,13 @@
 mutation createTimelineItem(
   $title: String!,
   $body: String,
-  $color: String,
-  $frequencyUnit: String,
+  $frequencyUnit: FrequencyEnum,
   $frequencyValue: Int,
   $lastCompletedAt: ISO8601DateTime
 ) {
   createTimelineItem(
     title: $title,
     body: $body,
-    color: $color,
     frequencyUnit: $frequencyUnit,
     frequencyValue: $frequencyValue,
     lastCompletedAt: $lastCompletedAt

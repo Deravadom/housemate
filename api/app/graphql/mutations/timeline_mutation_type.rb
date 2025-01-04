@@ -7,8 +7,7 @@ module Mutations
         argument :title, String
         with_options required: false do
           argument :body, String
-          argument :color, String
-          argument :frequency_unit, String
+          argument :frequency_unit, Types::FrequencyEnum
           argument :frequency_value, Integer
           argument :last_completed_at, GraphQL::Types::ISO8601DateTime
         end
@@ -19,8 +18,7 @@ module Mutations
         argument :title, String
         with_options required: false do
           argument :body, String
-          argument :color, String
-          argument :frequency_unit, String
+          argument :frequency_unit, Types::FrequencyEnum
           argument :frequency_value, Integer
           argument :last_completed_at, GraphQL::Types::ISO8601DateTime
         end

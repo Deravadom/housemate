@@ -20,7 +20,7 @@ const TextAreaInput = <T extends FieldValues,>({
     <>
       {label && <Label {...{ label, labelClass }} />}
       <textarea
-        {...register(fieldName, { required: required })}
+        {...register(fieldName, { required })}
         aria-invalid={errorField ? "true" : false}
         placeholder={placeholder}
         aria-placeholder={placeholder}

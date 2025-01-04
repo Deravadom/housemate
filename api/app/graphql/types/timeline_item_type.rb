@@ -6,7 +6,7 @@ module Types
     field :due_at, GraphQL::Types::ISO8601DateTime
     field :last_completed_at, GraphQL::Types::ISO8601DateTime
     field :frequency, String
-    field :frequency_unit, String
+    field :frequency_unit, String, method: :frequency_unit_formatted
     field :frequency_value, Integer
     field :color, String
   end

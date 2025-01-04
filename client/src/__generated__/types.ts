@@ -16,6 +16,15 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
+export enum FrequencyEnum {
+  Day = 'day',
+  Days = 'days',
+  Month = 'month',
+  Months = 'months',
+  Week = 'week',
+  Weeks = 'weeks'
+}
+
 export type Leftover = {
   __typename?: 'Leftover';
   allergens?: Maybe<Scalars['String']['output']>;
@@ -50,8 +59,7 @@ export type MutationCreateLeftoverArgs = {
 
 export type MutationCreateTimelineItemArgs = {
   body?: InputMaybe<Scalars['String']['input']>;
-  color?: InputMaybe<Scalars['String']['input']>;
-  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<FrequencyEnum>;
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
   lastCompletedAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
   title: Scalars['String']['input'];
@@ -79,8 +87,7 @@ export type MutationEditLeftoverArgs = {
 
 export type MutationEditTimelineItemArgs = {
   body?: InputMaybe<Scalars['String']['input']>;
-  color?: InputMaybe<Scalars['String']['input']>;
-  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<FrequencyEnum>;
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
   id: Scalars['ID']['input'];
   lastCompletedAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
@@ -158,8 +165,7 @@ export type CreateLeftoverMutation = { __typename?: 'Mutation', createLeftover?:
 export type CreateTimelineItemMutationVariables = Exact<{
   title: Scalars['String']['input'];
   body?: InputMaybe<Scalars['String']['input']>;
-  color?: InputMaybe<Scalars['String']['input']>;
-  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<FrequencyEnum>;
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
   lastCompletedAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
 }>;
@@ -178,8 +184,7 @@ export type EditTimelineItemMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   title: Scalars['String']['input'];
   body?: InputMaybe<Scalars['String']['input']>;
-  color?: InputMaybe<Scalars['String']['input']>;
-  frequencyUnit?: InputMaybe<Scalars['String']['input']>;
+  frequencyUnit?: InputMaybe<FrequencyEnum>;
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
   lastCompletedAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
 }>;

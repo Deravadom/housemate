@@ -1,13 +1,19 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CreateTimelineItemDocument, MutationCreateTimelineItemArgs } from "../../../__generated__/graphql";
+import { CreateTimelineItemDocument, FrequencyEnum, MutationCreateTimelineItemArgs } from "../../../__generated__/graphql";
 import { useMutation } from "@apollo/client";
 import FormInput from "../../forms/FormInput";
 import TextAreaInput from "../../forms/TextAreaInput";
 import { useContext } from "react";
 import { ModalContext } from "../../modal/Modal";
+import FormSelect, { FormSelectOption } from "../../forms/FormSelect";
+
+export const UNIT_OPTIONS: FormSelectOption[] = [
+  { value: "days", label: "Day(s)"},
+  { value: "weeks", label: "Week(s)"},
+  { value: "months", label: "Month(s)"}
+]
 
 const defaultValues: Partial<MutationCreateTimelineItemArgs> = {
-  color: "blue"
 }
 
 const defaultClass = 
@@ -51,20 +57,24 @@ const CreateItemForm = () => {
         {...commonProps}
       />
       <FormInput
-        placeholder="Value"
+        placeholder="Value*"
         inputClass={`${defaultClass}`}
         fieldName="frequencyValue"
         errorField={errors.frequencyValue}
         {...commonProps}
         type="number"
+        required
       />
-      <FormInput
-        placeholder="Units"
+      <FormSelect
+        placeholder="Units*"
         inputClass={`${defaultClass}`}
         fieldName="frequencyUnit"
+        type="select"
+        options={UNIT_OPTIONS}
         errorField={errors.frequencyUnit}
         {...commonProps}
-      />
+        required
+        />
       <input type="submit" value="Submit" className={`mt3 f3 self-end`} />
     </form>
   )

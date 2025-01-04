@@ -4,8 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  body              :text
-#  color             :string
-#  frequency_unit    :string
+#  frequency_unit    :integer          default("days")
 #  frequency_value   :integer
 #  last_completed_at :datetime
 #  title             :string           not null

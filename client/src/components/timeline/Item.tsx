@@ -1,17 +1,16 @@
+import { FrequencyEnum } from '../../__generated__/graphql'
 import useToggle from '../../hooks/useToggle'
 import DropMenu, { Option } from '../dropdown/DropMenu'
 import Modal from '../modal/Modal'
 import DeleteItemForm from './forms/DeleteItemForm'
 import EditItemForm from './forms/EditItemForm'
 
-type FrequencyUnit = 'day' | 'week' | 'month' | 'year'
-
 export type ItemProps = {
   id: string
   title: string
   body?: string | null
-  // frequencyUnit: FrequencyUnit
-  // frequencyValue: number
+  frequencyUnit?: FrequencyEnum | string | null
+  frequencyValue?: number | null
   frequency?: string | null
   lastCompletedAt?: Date | null
   dueAt?: Date | null
@@ -22,8 +21,8 @@ const Item = ({
   id,
   title,
   body,
-  // frequencyUnit,
-  // frequencyValue,
+  frequencyUnit,
+  frequencyValue,
   frequency,
   lastCompletedAt,
   dueAt,
@@ -50,7 +49,7 @@ const Item = ({
             {body && <p>{body}</p>}
             <p>{lastCompletedAt?.toLocaleDateString()}</p>
             {frequency && <p>{frequency}</p>}
-            {dueAt && <p>{dueAt.toLocaleDateString()}</p>}
+            {dueAt && <p>{`${new Date(dueAt).toLocaleDateString()}`}</p>}
           </div>
         )}
       </div>

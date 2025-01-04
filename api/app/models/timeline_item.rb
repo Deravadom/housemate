@@ -4,8 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  body              :text
-#  color             :string
-#  frequency_unit    :string
+#  frequency_unit    :integer          default("days")
 #  frequency_value   :integer
 #  last_completed_at :datetime
 #  title             :string           not null
@@ -27,9 +26,21 @@
 class TimelineItem < ApplicationRecord
   belongs_to :household
   belongs_to :user
+
+  enum frequency_unit: [
+    :days,
+    :weeks,
+    :months
+  ]
+
+  def frequency_unit_formatted
+    return frequency_unit.singularize if frequency_value < 2
+  
+    frequency_unit
+  end
   
   def frequency
-    "#{frequency_value} #{frequency_unit}"
+    "#{frequency_value} #{frequency_unit_formatted}"
   end
 
   def due_at

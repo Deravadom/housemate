@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_02_222121) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_04_190746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,14 +43,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_02_222121) do
   create_table "timeline_items", force: :cascade do |t|
     t.string "title", null: false
     t.text "body"
-    t.string "frequency_unit"
     t.integer "frequency_value"
     t.datetime "last_completed_at"
-    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "household_id", null: false
+    t.integer "frequency_unit", default: 0
     t.index ["household_id"], name: "index_timeline_items_on_household_id"
     t.index ["user_id"], name: "index_timeline_items_on_user_id"
   end

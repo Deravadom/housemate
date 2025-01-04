@@ -6,6 +6,8 @@ import { useContext } from "react"
 import { ModalContext } from "../../modal/Modal"
 import FormInput from "../../forms/FormInput"
 import TextAreaInput from "../../forms/TextAreaInput"
+import FormSelect from "../../forms/FormSelect"
+import { UNIT_OPTIONS } from "./CreateItemForm"
 
 const defaultClass = 
   "f3 mv2 lh-copy"
@@ -56,20 +58,23 @@ const EditItemFormContent = ({id, item}: ContentProps) => {
         {...commonProps}
       />
       <FormInput
-        placeholder="Value"
+        placeholder="Value*"
         inputClass={`${defaultClass}`}
         fieldName="frequencyValue"
         errorField={errors.frequencyValue}
         {...commonProps}
         type="number"
       />
-      <FormInput
-        placeholder="Units"
+      <FormSelect
+        placeholder="Units*"
         inputClass={`${defaultClass}`}
         fieldName="frequencyUnit"
+        type="select"
+        options={UNIT_OPTIONS}
         errorField={errors.frequencyUnit}
         {...commonProps}
-      />
+        required
+        />
       <input type="submit" value="Submit" className={`mt3 f3 self-end`} />
     </form>
   )
