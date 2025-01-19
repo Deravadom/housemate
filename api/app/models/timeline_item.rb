@@ -46,4 +46,8 @@ class TimelineItem < ApplicationRecord
   def due_at
     DateTime.now
   end
+
+  def color
+    "blue"
+  end
 end

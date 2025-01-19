@@ -2,5 +2,6 @@ query currentUser {
   currentUser {
     email
     name
+    householdId
   }
 }

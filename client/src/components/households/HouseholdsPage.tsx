@@ -11,8 +11,8 @@ const HouseholdsPage = () => {
   return (
     <div className="flex flex-column">
       <HasItems items={data?.households}>
-        {households.map(({name, users}) => (
-          <HouseholdItem key={name} {...{name, users}} />
+        {households?.map(({name, id, users}) => (
+          <HouseholdItem key={name} {...{name, id, users}} />
         ))}
       </HasItems>
     </div>

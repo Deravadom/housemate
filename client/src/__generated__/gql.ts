@@ -21,9 +21,9 @@ const documents = {
     "mutation deleteTimelineItem($id: ID!) {\n  deleteTimelineItem(id: $id)\n}": types.DeleteTimelineItemDocument,
     "mutation editTimelineItem($id: ID!, $title: String!, $body: String, $frequencyUnit: FrequencyEnum, $frequencyValue: Int, $lastCompletedAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    lastCompletedAt: $lastCompletedAt\n  ) {\n    ...TimelineItem\n  }\n}": types.EditTimelineItemDocument,
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
-    "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.SetHouseholdDocument,
-    "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}": types.CurrentUserDocument,
-    "query households {\n  households {\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.HouseholdsDocument,
+    "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.SetHouseholdDocument,
+    "query currentUser {\n  currentUser {\n    email\n    name\n    householdId\n  }\n}": types.CurrentUserDocument,
+    "query households {\n  households {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.HouseholdsDocument,
     "query leftovers {\n  leftovers {\n    ...Leftover\n  }\n}": types.LeftoversDocument,
     "query testField {\n  testField\n}": types.TestFieldDocument,
     "query timelineItem($id: ID!) {\n  timelineItem(id: $id) {\n    ...TimelineItem\n  }\n}": types.TimelineItemDocument,
@@ -76,15 +76,15 @@ export function gql(source: "mutation login($email: String!, $password: String!)
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    name\n    users {\n      name\n      email\n    }\n  }\n}"): (typeof documents)["mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    name\n    users {\n      name\n      email\n    }\n  }\n}"];
+export function gql(source: "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"): (typeof documents)["mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"): (typeof documents)["query currentUser {\n  currentUser {\n    email\n    name\n  }\n}"];
+export function gql(source: "query currentUser {\n  currentUser {\n    email\n    name\n    householdId\n  }\n}"): (typeof documents)["query currentUser {\n  currentUser {\n    email\n    name\n    householdId\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query households {\n  households {\n    name\n    users {\n      name\n      email\n    }\n  }\n}"): (typeof documents)["query households {\n  households {\n    name\n    users {\n      name\n      email\n    }\n  }\n}"];
+export function gql(source: "query households {\n  households {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"): (typeof documents)["query households {\n  households {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

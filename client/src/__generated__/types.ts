@@ -27,6 +27,7 @@ export enum FrequencyEnum {
 
 export type Household = {
   __typename?: 'Household';
+  id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   users?: Maybe<Array<User>>;
 };
@@ -163,6 +164,7 @@ export type TimelineItem = {
 export type User = {
   __typename?: 'User';
   email: Scalars['String']['output'];
+  householdId?: Maybe<Scalars['ID']['output']>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
 };
@@ -224,17 +226,17 @@ export type SetHouseholdMutationVariables = Exact<{
 }>;
 
 
-export type SetHouseholdMutation = { __typename?: 'Mutation', setHousehold?: { __typename?: 'Household', name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null } | null };
+export type SetHouseholdMutation = { __typename?: 'Mutation', setHousehold?: { __typename?: 'Household', id: string, name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null } | null };
 
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string, name?: string | null } | null };
+export type CurrentUserQuery = { __typename?: 'Query', currentUser?: { __typename?: 'User', email: string, name?: string | null, householdId?: string | null } | null };
 
 export type HouseholdsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HouseholdsQuery = { __typename?: 'Query', households?: Array<{ __typename?: 'Household', name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null }> | null };
+export type HouseholdsQuery = { __typename?: 'Query', households?: Array<{ __typename?: 'Household', id: string, name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null }> | null };
 
 export type LeftoversQueryVariables = Exact<{ [key: string]: never; }>;
 

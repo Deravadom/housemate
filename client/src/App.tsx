@@ -24,7 +24,7 @@ const App = () => {
     <div style={style} >
       <AuthProvider>
         <Routes>
-          <Route path={routes.index} element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
+          <Route path={routes.index} element={<AuthedRoute><DashboardPage /></AuthedRoute>} />
           <Route path={routes.dashboard} element={<AuthedRoute><DashboardPage /></AuthedRoute>} />
           <Route path={routes.timeline} element={<AuthedRoute><TimelinePage /></AuthedRoute>} />
           <Route path={routes.login} element={<AuthPage to={routes.dashboard} />} />
