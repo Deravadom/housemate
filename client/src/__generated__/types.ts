@@ -122,6 +122,7 @@ export type MutationSetHouseholdArgs = {
 
 export type MutationSignupArgs = {
   email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
@@ -227,6 +228,15 @@ export type SetHouseholdMutationVariables = Exact<{
 
 
 export type SetHouseholdMutation = { __typename?: 'Mutation', setHousehold?: { __typename?: 'Household', id: string, name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null } | null };
+
+export type SignupMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+}>;
+
+
+export type SignupMutation = { __typename?: 'Mutation', signup?: any | null };
 
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -9,7 +9,6 @@ import TestApi from './components/TestApi';
 import TimelinePage from './components/timeline/TimelinePage';
 import LeftoversPage from './components/leftovers/LeftoversPage';
 import DashboardPage from './components/dashboard/DashboardPage';
-import Header from './components/header';
 import HouseholdsPage from './components/households/HouseholdsPage';
 
 const style: CSSProperties = {

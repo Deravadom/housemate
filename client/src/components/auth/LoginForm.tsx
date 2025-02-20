@@ -9,9 +9,10 @@ const defaultValues = {
 }
 
 type Props = {
-  to: To
+  to: To,
+  toggleSignup: () => void
 }
-const LoginForm = ({ to }: Props) => {
+const LoginForm = ({ to, toggleSignup }: Props) => {
   const { register, handleSubmit, formState: { errors } } = useForm<MutationLoginArgs>({ defaultValues })
   const { login } = useAuth();
 
@@ -39,8 +40,10 @@ const LoginForm = ({ to }: Props) => {
           className="mb3"
         />
         {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
-        <input type="submit" value="Log In" className="w3 ml-auto"/>
+        <input type="submit" value="Log In" className="w3 ml-auto" />
       </form>
+
+      <button className="mt2" onClick={toggleSignup}>Create Account</button>
     </div>
   )
 }

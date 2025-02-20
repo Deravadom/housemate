@@ -22,6 +22,7 @@ const documents = {
     "mutation editTimelineItem($id: ID!, $title: String!, $body: String, $frequencyUnit: FrequencyEnum, $frequencyValue: Int, $lastCompletedAt: ISO8601DateTime) {\n  editTimelineItem(\n    id: $id\n    title: $title\n    body: $body\n    frequencyUnit: $frequencyUnit\n    frequencyValue: $frequencyValue\n    lastCompletedAt: $lastCompletedAt\n  ) {\n    ...TimelineItem\n  }\n}": types.EditTimelineItemDocument,
     "mutation login($email: String!, $password: String!) {\n  login(email: $email, password: $password)\n}": types.LoginDocument,
     "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.SetHouseholdDocument,
+    "mutation signup($email: String!, $password: String!, $name: String!) {\n  signup(email: $email, password: $password, name: $name)\n}": types.SignupDocument,
     "query currentUser {\n  currentUser {\n    email\n    name\n    householdId\n  }\n}": types.CurrentUserDocument,
     "query households {\n  households {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}": types.HouseholdsDocument,
     "query leftovers {\n  leftovers {\n    ...Leftover\n  }\n}": types.LeftoversDocument,
@@ -77,6 +78,10 @@ export function gql(source: "mutation login($email: String!, $password: String!)
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"): (typeof documents)["mutation setHousehold($id: ID!) {\n  setHousehold(id: $id) {\n    id\n    name\n    users {\n      name\n      email\n    }\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "mutation signup($email: String!, $password: String!, $name: String!) {\n  signup(email: $email, password: $password, name: $name)\n}"): (typeof documents)["mutation signup($email: String!, $password: String!, $name: String!) {\n  signup(email: $email, password: $password, name: $name)\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -7,6 +7,7 @@ module Mutations
       field :signup, GraphQL::Types::JSON, null: true do
         argument :email, String, required: true
         argument :password, String, required: true
+        argument :name, String
       end
 
       field :login, GraphQL::Types::JSON, null: true do
@@ -15,8 +16,8 @@ module Mutations
       end
     end
 
-    def signup(email:, password:)
-      user = User.create!(email: email, password: password)
+    def signup(email:, password:, name:)
+      user = User.create!(email:, password:, name:, household_id: 1)
       create_auth_token(user)
     end
 
