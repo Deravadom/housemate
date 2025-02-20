@@ -14,25 +14,37 @@ module Mutations
         argument :email, String, required: true
         argument :password, String, required: true
       end
+
+      field :set_household, Types::HouseholdType, null: false do
+        argument :id, GraphQL::Types::ID, required: true
+      end
     end
 
     def signup(email:, password:, name:)
-      user = User.create!(email:, password:, name:, household_id: 1)
+      user = User.create!(email:, password:, name:)
       create_auth_token(user)
     end
 
     def login(email:, password:)
-      user = User.find_by!(email: email)
+      user = User.find_by!(email:)
       return unless user.authenticate(password)
       
       token = create_auth_token(user)
       return token unless user.household_id.blank?
       
       if (household = user.households.pluck(:id).first).present?
-        user.update_column(household__id: household.id)
+        user.update_column(household_id: household.id)
       end
 
       token
+    end
+
+    def change_household(id:)
+      return unless (user = context[:current_user])
+      household = user.households.find!(id)
+
+      user.update_column(household_id: household.id)
+      household
     end
 
     # private
