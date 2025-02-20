@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
   has_and_belongs_to_many :households
-  belongs_to :household
+  belongs_to :household, optional: true
   has_many :timeline_items
   has_many :leftovers
 
