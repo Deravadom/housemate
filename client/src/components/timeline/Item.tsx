@@ -1,6 +1,5 @@
-import { FrequencyEnum } from '../../__generated__/graphql'
 import useToggle from '../../hooks/useToggle'
-import DropMenu, { Option } from '../dropdown/DropMenu'
+import DropMenu, { type Option } from '../dropdown/DropMenu'
 import Modal from '../modal/Modal'
 import DeleteItemForm from './forms/DeleteItemForm'
 import EditItemForm from './forms/EditItemForm'

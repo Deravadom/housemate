@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import routes from "../../routes"
-import { capitalize} from "../../utils/stringUtils"
-
-const { timeline, leftovers, households } = routes
-const pages = [timeline, leftovers, households]
+import { useNavigate } from "react-router"
+import { capitalize } from "../../utils/stringUtils"
+const pages = ['/timeline', '/leftovers', '/households']
 
 const DashboardPage = () => {
   const navigate = useNavigate()

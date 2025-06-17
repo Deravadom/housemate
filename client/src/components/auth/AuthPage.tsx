@@ -1,6 +1,6 @@
 import useToggle from "../../hooks/useToggle";
 import LoginForm from "./LoginForm";
-import { To } from "react-router-dom"
+import { type To } from "react-router"
 import SignupForm from "./SignupForm";
 
 type Props = {

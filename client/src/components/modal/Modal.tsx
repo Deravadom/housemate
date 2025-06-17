@@ -1,9 +1,9 @@
 import {
   createContext,
-  CSSProperties,
-  Dispatch,
-  PropsWithChildren,
-  SetStateAction
+  type CSSProperties,
+  type Dispatch,
+  type PropsWithChildren,
+  type SetStateAction
 } from "react"
 
 const backgroundStyle: CSSProperties = {

@@ -1,5 +1,5 @@
-import { FieldValues } from "react-hook-form"
-import { FormInputProps } from "./FormInput"
+import { type FieldValues } from "react-hook-form"
+import { type FormInputProps } from "./FormInput"
 import Error from "./Error"
 import Label from "./Label"
 

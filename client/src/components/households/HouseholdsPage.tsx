@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
-import { Household, HouseholdsDocument } from "../../__generated__/graphql"
 import HasItems from "../errors/HasItems"
 import HouseholdItem from "./HouseholdItem"
+import { HouseholdsDocument, type Household } from "src/__generated__/types"
 
 const HouseholdsPage = () => {
   const { data } = useQuery(HouseholdsDocument)
@@ -11,8 +11,8 @@ const HouseholdsPage = () => {
   return (
     <div className="flex flex-column">
       <HasItems items={data?.households}>
-        {households?.map(({name, id, users}) => (
-          <HouseholdItem key={name} {...{name, id, users}} />
+        {households?.map(({ name, id, users }) => (
+          <HouseholdItem key={name} {...{ name, id, users }} />
         ))}
       </HasItems>
     </div>

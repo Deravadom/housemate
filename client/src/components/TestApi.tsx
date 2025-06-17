@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { TestFieldDocument } from '../__generated__/graphql';
+import { TestFieldDocument } from 'src/__generated__/types';
 
 const TestApi = () => {
   const { data } = useQuery(TestFieldDocument)

@@ -1,4 +1,4 @@
-import { FieldError } from "react-hook-form"
+import { type FieldError } from "react-hook-form"
 
 export type ErrorProps = {
   errorField?: FieldError | undefined
@@ -14,14 +14,14 @@ const Error = ({
   errorSpaceClass,
 }: ErrorProps) => {
   return (
-  <div className={!errorField ? errorSpaceClass: undefined}>
-    {errorField?.type === "required" && (
-      <p role="alert" className={errorClass}>{errorMessage}</p>
-    )}
-    {!errorField && (
-      <div className={errorSpaceClass} />
-    )}
-  </div>
-)
+    <div className={!errorField ? errorSpaceClass : undefined}>
+      {errorField?.type === "required" && (
+        <p role="alert" className={errorClass}>{errorMessage}</p>
+      )}
+      {!errorField && (
+        <div className={errorSpaceClass} />
+      )}
+    </div>
+  )
 }
 export default Error

@@ -1,4 +1,4 @@
-export const objectWithoutKeys = <T extends {}>(object: T, ...keys: string[]) => {
+export const objectWithoutKeys = <T extends object>(object: T, ...keys: string[]) => {
     return Object.entries(object).reduce(
         (acc, [key, value]) => (
             !keys.includes(key) ?

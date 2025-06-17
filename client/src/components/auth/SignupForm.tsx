@@ -1,8 +1,8 @@
-import { To } from "react-router-dom"
+import { type To } from "react-router"
 import { useAuth } from "./AuthProvider"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { MutationSignupArgs } from "../../__generated__/graphql"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import FormInput from "../forms/FormInput"
+import type { MutationSignupArgs } from "src/__generated__/types"
 
 type Props = {
   to: To

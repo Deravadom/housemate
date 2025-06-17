@@ -1,17 +1,17 @@
-import { CSSProperties, HTMLInputTypeAttribute, InputHTMLAttributes } from "react"
-import { FieldValues, Path, UseFormRegister } from "react-hook-form"
-import Error, { ErrorProps } from "./Error"
-import Label, { LabelProps } from "./Label"
+import { type CSSProperties, type HTMLInputTypeAttribute, type InputHTMLAttributes } from "react"
+import { type FieldValues, type Path, type UseFormRegister } from "react-hook-form"
+import Error, { type ErrorProps } from "./Error"
+import Label, { type LabelProps } from "./Label"
 import { useMinDate } from "../../utils/dateUtils"
 
 type MinValue = InputHTMLAttributes<HTMLInputTypeAttribute>["min"]
 const useMin = (min: MinValue, type: HTMLInputTypeAttribute | undefined) => {
   const today = useMinDate()
 
-  if(!type) return undefined
-  if(min) return min
+  if (!type) return undefined
+  if (min) return min
 
-  switch(type) {
+  switch (type) {
     case "date": {
       return today
     }

@@ -14,10 +14,6 @@ module Mutations
         argument :email, String, required: true
         argument :password, String, required: true
       end
-
-      field :set_household, Types::HouseholdType, null: false do
-        argument :id, GraphQL::Types::ID, required: true
-      end
     end
 
     def signup(email:, password:, name:)

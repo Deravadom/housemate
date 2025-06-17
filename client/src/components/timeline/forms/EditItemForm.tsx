@@ -1,15 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client"
-import { EditTimelineItemDocument, MutationCreateTimelineItemArgs, MutationEditTimelineItemArgs, TimelineItem, TimelineItemDocument } from "../../../__generated__/graphql"
 import { objectWithoutKeys } from "../../../utils/objectUtils"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { useContext } from "react"
 import { ModalContext } from "../../modal/Modal"
 import FormInput from "../../forms/FormInput"
 import TextAreaInput from "../../forms/TextAreaInput"
 import FormSelect from "../../forms/FormSelect"
 import { UNIT_OPTIONS } from "./CreateItemForm"
+import { EditTimelineItemDocument, TimelineItemDocument, type MutationCreateTimelineItemArgs, type MutationEditTimelineItemArgs, type TimelineItem } from "src/__generated__/types"
 
-const defaultClass = 
+const defaultClass =
   "f3 mv2 lh-copy"
 
 type Props = {
@@ -20,17 +20,19 @@ type ContentProps = Props & {
   item: TimelineItem
 }
 
-const EditItemFormContent = ({id, item}: ContentProps) => {
-  const [editIem] = useMutation(EditTimelineItemDocument, { refetchQueries: [
-    { query: TimelineItemDocument, variables: { id }}
-  ]})
-  const { close } = useContext(ModalContext) 
+const EditItemFormContent = ({ id, item }: ContentProps) => {
+  const [editIem] = useMutation(EditTimelineItemDocument, {
+    refetchQueries: [
+      { query: TimelineItemDocument, variables: { id } }
+    ]
+  })
+  const { close } = useContext(ModalContext)
 
   const defaultValues: Partial<MutationCreateTimelineItemArgs> = objectWithoutKeys(item, "__typename")
   const { register, handleSubmit, formState: { errors } } = useForm<MutationEditTimelineItemArgs>({ defaultValues })
 
   const onSubmit: SubmitHandler<MutationEditTimelineItemArgs> = (data) => {
-    editIem({ variables: data, onCompleted: close})
+    editIem({ variables: data, onCompleted: close })
   }
 
   const commonProps = {
@@ -74,16 +76,16 @@ const EditItemFormContent = ({id, item}: ContentProps) => {
         errorField={errors.frequencyUnit}
         {...commonProps}
         required
-        />
+      />
       <input type="submit" value="Submit" className={`mt3 f3 self-end`} />
     </form>
   )
 }
 
-const EditItemForm = ({id}: Props) => {
-  const { data } = useQuery(TimelineItemDocument, { variables: { id }})
-  
-  if(!data?.timelineItem) return <></>
+const EditItemForm = ({ id }: Props) => {
+  const { data } = useQuery(TimelineItemDocument, { variables: { id } })
+
+  if (!data?.timelineItem) return <></>
 
   return <EditItemFormContent id={id} item={data.timelineItem as TimelineItem} />
 }

@@ -1,5 +1,5 @@
-import { FieldValues } from "react-hook-form";
-import { FormInputProps } from "./FormInput";
+import { type FieldValues } from "react-hook-form";
+import { type FormInputProps } from "./FormInput";
 import Label from "./Label";
 import Error from "./Error"
 
@@ -36,7 +36,7 @@ const FormSelect = <T extends FieldValues,>({
         className={inputClass}
         style={inputStyle}
       >
-        <option style={{display: "none"}} value="" selected>{placeholder}</option>
+        <option style={{ display: "none" }} value="" selected>{placeholder}</option>
         {options.map(({ value, label: optionLabel }) => (
           <option key={value} value={value}>
             {optionLabel || value}

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
-import { Leftover, LeftoversDocument } from "../../__generated__/graphql"
 import LeftoversList from "./LeftoversList"
 import HasItems from "../errors/HasItems"
+import { LeftoversDocument, type Leftover } from "src/__generated__/types"
 
 const LeftoversPage = () => {
   const { data } = useQuery(LeftoversDocument)

@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react"
-import { Navigate } from "react-router-dom"
+import { type PropsWithChildren } from "react"
 import { useAuth } from "./AuthProvider"
 import Header from "../header";
+import { Navigate } from "react-router";
 
 const AuthedRoute = ({ children }: PropsWithChildren) => {
   const { token } = useAuth();

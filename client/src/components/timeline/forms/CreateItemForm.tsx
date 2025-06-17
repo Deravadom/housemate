@@ -1,33 +1,33 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { CreateTimelineItemDocument, FrequencyEnum, MutationCreateTimelineItemArgs } from "../../../__generated__/graphql";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import FormInput from "../../forms/FormInput";
 import TextAreaInput from "../../forms/TextAreaInput";
 import { useContext } from "react";
 import { ModalContext } from "../../modal/Modal";
-import FormSelect, { FormSelectOption } from "../../forms/FormSelect";
+import FormSelect, { type FormSelectOption } from "../../forms/FormSelect";
+import { CreateTimelineItemDocument, type MutationCreateTimelineItemArgs } from "src/__generated__/types";
 
 export const UNIT_OPTIONS: FormSelectOption[] = [
-  { value: "days", label: "Day(s)"},
-  { value: "weeks", label: "Week(s)"},
-  { value: "months", label: "Month(s)"}
+  { value: "days", label: "Day(s)" },
+  { value: "weeks", label: "Week(s)" },
+  { value: "months", label: "Month(s)" }
 ]
 
 const defaultValues: Partial<MutationCreateTimelineItemArgs> = {
 }
 
-const defaultClass = 
+const defaultClass =
   "f3 mv2 lh-copy"
 
 const CreateItemForm = () => {
   const [createItem] = useMutation(CreateTimelineItemDocument)
   const { register, handleSubmit, formState: { errors } } = useForm<MutationCreateTimelineItemArgs>({ defaultValues })
-  const { close } = useContext(ModalContext) 
+  const { close } = useContext(ModalContext)
 
   const onSubmit: SubmitHandler<MutationCreateTimelineItemArgs> = (data) => {
-    createItem({ 
-      variables: data, 
-      refetchQueries: ["timelineItems"], 
+    createItem({
+      variables: data,
+      refetchQueries: ["timelineItems"],
       onCompleted: close
     })
   }
@@ -74,7 +74,7 @@ const CreateItemForm = () => {
         errorField={errors.frequencyUnit}
         {...commonProps}
         required
-        />
+      />
       <input type="submit" value="Submit" className={`mt3 f3 self-end`} />
     </form>
   )

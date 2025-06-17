@@ -1,17 +1,17 @@
 import { useQuery } from '@apollo/client'
 import Item from './Item'
-import { TimelineItem, TimelineItemsDocument } from '../../__generated__/graphql'
+import { TimelineItemsDocument, type TimelineItem } from 'src/__generated__/types'
 
 const Timeline = () => {
-  const { data, loading} = useQuery(TimelineItemsDocument)
+  const { data, loading } = useQuery(TimelineItemsDocument)
 
-  if(loading || !data?.timelineItems) {
+  if (loading || !data?.timelineItems) {
     return <>Loading</>
   }
 
   const items = data.timelineItems as TimelineItem[]
 
-  if(!items.length) {
+  if (!items.length) {
     return <>Nothing to see here</>
   }
 

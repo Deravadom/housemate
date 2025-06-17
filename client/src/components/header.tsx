@@ -1,16 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import DropMenu, { Option } from "./dropdown/DropMenu";
-import { useState } from "react";
+import { useNavigate } from "react-router";
+import DropMenu, { type Option } from "./dropdown/DropMenu";
+import { useState, type JSX } from "react";
 import Modal from "./modal/Modal";
 import CreateItemForm from "./timeline/forms/CreateItemForm";
-import { routeName } from "../utils/stringUtils";
-import routes from "../routes";
 import CaseWrapper from "./CaseWrapper";
 import CreateLeftoverForm from "./leftovers/CreateLeftoverForm";
+import { routeName } from "src/utils/stringUtils";
 
-const cases = {
-  [routes.timeline]: <CreateItemForm />,
-  [routes.leftovers]: <CreateLeftoverForm />
+const cases: Record<string, JSX.Element> = {
+  ['/timeline']: <CreateItemForm />,
+  ['/leftovers']: <CreateLeftoverForm />
 }
 
 const DynamicCreate = () => {
@@ -26,21 +25,21 @@ const Header = () => {
 
   const logout = () => {
     localStorage.setItem('housemate-bearer', '')
-    navigate(routes.login)
+    navigate('/login')
   }
 
   const options: Option[] = [
     {
       label: "Dashboard",
-      onSelect: () => navigate(routes.dashboard)
+      onSelect: () => navigate('/dashboard')
     },
     {
       label: "Timeline",
-      onSelect: () => navigate(routes.timeline)
+      onSelect: () => navigate('/timeline')
     },
     {
       label: "Leftovers",
-      onSelect: () => navigate(routes.leftovers)
+      onSelect: () => navigate('/leftovers')
     },
     {
       label: "Logout",

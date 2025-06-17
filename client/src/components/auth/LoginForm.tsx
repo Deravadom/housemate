@@ -1,7 +1,7 @@
-import { useForm, SubmitHandler } from "react-hook-form"
-import { MutationLoginArgs } from "../../__generated__/graphql";
+import { useForm, type SubmitHandler } from "react-hook-form"
 import { useAuth } from "./AuthProvider";
-import { To } from "react-router-dom";
+import { type To } from "react-router";
+import type { MutationLoginArgs } from "src/__generated__/types";
 
 const defaultValues = {
   email: "test@example.com",
@@ -40,7 +40,7 @@ const LoginForm = ({ to, toggleSignup }: Props) => {
           className="mb3"
         />
         {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
-        <input type="submit" value="Log In" className="w3 ml-auto" />
+        <input type="submit" value="Log In" className="w3 ml-auto bg-red" />
       </form>
 
       <button className="mt2" onClick={toggleSignup}>Create Account</button>

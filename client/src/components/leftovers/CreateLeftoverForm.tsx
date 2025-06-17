@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client"
-import { CreateLeftoverDocument, MutationCreateLeftoverArgs } from "../../__generated__/graphql"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { useContext } from "react"
 import { ModalContext } from "../modal/Modal"
 import FormInput from "../forms/FormInput"
+import { CreateLeftoverDocument, type MutationCreateLeftoverArgs } from "src/__generated__/types"
 
 const defaultValues: Partial<MutationCreateLeftoverArgs> = {
 }
@@ -13,8 +13,8 @@ const defaultClass =
 
 const CreateLeftoverForm = () => {
   const [createLeftover] = useMutation(CreateLeftoverDocument)
-  const { register, handleSubmit, formState: { errors}} = useForm<MutationCreateLeftoverArgs>({ defaultValues})
-  const { close} = useContext(ModalContext)
+  const { register, handleSubmit, formState: { errors } } = useForm<MutationCreateLeftoverArgs>({ defaultValues })
+  const { close } = useContext(ModalContext)
 
   const onSubmit: SubmitHandler<MutationCreateLeftoverArgs> = (data) => {
     createLeftover({

@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client"
-import { CurrentUserDocument, SetHouseholdDocument, User } from "../../__generated__/graphql"
 import useToggle from "../../hooks/useToggle"
 import { HomeIcon } from "@radix-ui/react-icons"
+import { CurrentUserDocument, SetHouseholdDocument, type User } from "src/__generated__/types"
 
 type Props = {
   name: string
