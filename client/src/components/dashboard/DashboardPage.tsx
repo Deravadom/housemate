@@ -6,10 +6,10 @@ const DashboardPage = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-column h-100 justify-around items-center flex-wrap mv2 mh3">
+    <div className="flex flex-col h-100 justify-around items-center flex-wrap my-2 mx-3">
       {pages.map(page => (
         <button
-          className="w5 h3 f4 ba flex-nowrap mv2 tc lh-copy br3"
+          className="border flex-nowrap my-2 rounded"
           key={page}
           onClick={() => navigate(page)}
         >

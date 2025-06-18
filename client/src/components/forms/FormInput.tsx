@@ -1,10 +1,14 @@
-import { type CSSProperties, type HTMLInputTypeAttribute, type InputHTMLAttributes } from "react"
-import { type FieldValues, type Path, type UseFormRegister } from "react-hook-form"
+import type { HTMLInputTypeAttribute, InputHTMLAttributes, JSX } from "react"
+import { type FieldValue, type FieldValues, type Path, useFormContext, type Validate, type ValidationRule } from "react-hook-form"
+import { useMinDate } from "src/utils/dateUtils"
 import Error, { type ErrorProps } from "./Error"
 import Label, { type LabelProps } from "./Label"
-import { useMinDate } from "../../utils/dateUtils"
 
-type MinValue = InputHTMLAttributes<HTMLInputTypeAttribute>["min"]
+export type InputBaseAttr = InputHTMLAttributes<HTMLInputTypeAttribute>
+
+type MaxLengthValue = InputBaseAttr["maxLength"]
+type MaxValue = InputBaseAttr["max"]
+type MinValue = InputBaseAttr["min"]
 const useMin = (min: MinValue, type: HTMLInputTypeAttribute | undefined) => {
   const today = useMinDate()
 
@@ -20,52 +24,88 @@ const useMin = (min: MinValue, type: HTMLInputTypeAttribute | undefined) => {
 
 export type FormInputProps<T extends FieldValues> =
   LabelProps & ErrorProps & {
+    description?: string
+    descriptionClass?: string
+    containerClass?: string
     fieldName: Path<T>
     inputClass?: string
-    inputStyle?: CSSProperties
+    inputContainerClass?: string
     required?: boolean
     placeholder?: string
-    register: UseFormRegister<T>
     type?: HTMLInputTypeAttribute
     min?: MinValue
+    max?: MaxValue
+    maxLength?: MaxLengthValue
+    step?: InputBaseAttr["step"]
+    validate?: Validate<FieldValue<T>, FieldValues>
+    pattern?: ValidationRule<RegExp>
+    icon?: JSX.Element
   }
 
 const FormInput = <T extends FieldValues,>({
+  containerClass,
   fieldName,
   label,
   labelClass,
+  description,
+  descriptionClass,
   inputClass,
-  inputStyle,
   required,
   placeholder,
   errorField,
   errorMessage = "Required",
   errorClass,
-  register,
+  validate,
+  pattern,
   type,
   min,
-  errorSpaceClass
+  max,
+  maxLength,
+  step,
+  errorSpaceClass,
+  icon,
+  inputContainerClass
 }: FormInputProps<T>) => {
-  const valueAsNumber = type === 'number'
+  const valueAsNumber = type === 'number' ? undefined : false
   const minValue = useMin(min, type)
 
+  const { register } = useFormContext<T>()
+
   return (
-    <>
+    <div className={containerClass}>
       {label && <Label {...{ label, labelClass }} />}
-      <input
-        type={type}
-        {...register(fieldName, { required: required, valueAsNumber })}
-        aria-invalid={errorField ? "true" : false}
-        placeholder={placeholder}
-        aria-placeholder={placeholder}
-        className={inputClass}
-        style={inputStyle}
-        min={minValue}
-      />
+      {description && (
+        <span className={descriptionClass}>{description}</span>
+      )}
+      {icon && (
+        <div className={inputContainerClass}>
+          {icon}
+          <input
+            type={type}
+            {...register(fieldName, { required, valueAsNumber, validate, pattern })}
+            aria-invalid={errorField ? "true" : false}
+            aria-placeholder={placeholder}
+            className={inputClass}
+            min={minValue}
+            {...{ placeholder, max, maxLength, step }}
+          />
+        </div>
+      )}
+      {!icon && (
+        <input
+          type={type}
+          {...register(fieldName, { required, valueAsNumber, validate, pattern })}
+          aria-invalid={errorField ? "true" : false}
+          aria-placeholder={placeholder}
+          className={inputClass}
+          min={minValue}
+          {...{ placeholder, max, maxLength }}
+        />
+      )}
       {required && (
         <Error {...{ errorField, errorClass, errorMessage, errorSpaceClass }} />
       )}
-    </>
+    </div>
   )
 }
 

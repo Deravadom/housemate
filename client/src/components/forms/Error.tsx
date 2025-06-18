@@ -15,7 +15,7 @@ const Error = ({
 }: ErrorProps) => {
   return (
     <div className={!errorField ? errorSpaceClass : undefined}>
-      {errorField?.type === "required" && (
+      {errorField && (
         <p role="alert" className={errorClass}>{errorMessage}</p>
       )}
       {!errorField && (

@@ -1,13 +1,13 @@
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import FormInput from "../../forms/FormInput";
 import TextAreaInput from "../../forms/TextAreaInput";
 import { useContext } from "react";
 import { ModalContext } from "../../modal/Modal";
-import FormSelect, { type FormSelectOption } from "../../forms/FormSelect";
-import { CreateTimelineItemDocument, type MutationCreateTimelineItemArgs } from "src/__generated__/types";
+import FormSelect, { FormSelectOption } from "../../forms/FormSelect";
+import { CreateTimelineItemDocument, MutationCreateTimelineItemArgs } from "src/__generated__/types";
 
-export const UNIT_OPTIONS: FormSelectOption[] = [
+export const UNIT_OPTIONS: FormSelectOption<FieldValues>[] = [
   { value: "days", label: "Day(s)" },
   { value: "weeks", label: "Week(s)" },
   { value: "months", label: "Month(s)" }

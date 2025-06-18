@@ -1,12 +1,13 @@
 export type LabelProps = {
   label?: string
   labelClass?: string
+  onClick?: () => void
 }
 
 const Label = ({
-  label, labelClass
+  label, labelClass, onClick
 }: LabelProps) => (
-  <label className={labelClass}>{label}</label>
+  <label className={labelClass} onClick={onClick}>{label}</label>
 )
 
 export default Label

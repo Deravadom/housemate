@@ -6,6 +6,7 @@ import CreateItemForm from "./timeline/forms/CreateItemForm";
 import CaseWrapper from "./CaseWrapper";
 import CreateLeftoverForm from "./leftovers/CreateLeftoverForm";
 import { routeName } from "src/utils/stringUtils";
+import Row from "./flex/Row";
 
 const cases: Record<string, JSX.Element> = {
   ['/timeline']: <CreateItemForm />,
@@ -50,18 +51,20 @@ const Header = () => {
   const showButton = !!cases[window.location.pathname]
 
   return (
-    <>
-      <div className="f1 flex flex-row justify-end bg-moon-gray w-100 mb3">
-        <span className="f3 mr-auto ml2 self-center">{name}</span>
-        {showButton && (
-          <button className="w50 f5-l f4 mh3 mv2 w2 h2 br3" onClick={() => setOpen(true)}>+</button>
-        )}
-        <DropMenu options={options} className="w2 h2 br3 mr3 f3 mv2" />
-        <Modal open={open} setOpen={setOpen}>
-          <DynamicCreate />
-        </Modal>
-      </div>
-    </>
+    <Row className="justify-end w-full gap-4 items-center p-4">
+      <span className="lg:text-4xl text-sm">{name}</span>
+      {showButton && (
+        <button className="bg-red-200" onClick={() => setOpen(true)}>+</button>
+      )}
+      <DropMenu
+        options={options}
+        className="w-6 h-6 bg-red-200"
+
+      />
+      <Modal open={open} setOpen={setOpen}>
+        <DynamicCreate />
+      </Modal>
+    </Row>
   )
 }
 

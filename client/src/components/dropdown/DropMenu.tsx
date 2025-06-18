@@ -1,11 +1,5 @@
-import {
-  Root,
-  Trigger,
-  Portal,
-  Content,
-  Item
-} from "@radix-ui/react-dropdown-menu"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
+import useToggle from "src/hooks/useToggle"
 
 export type Option = {
   label: string
@@ -15,34 +9,40 @@ export type Option = {
 type Props = {
   options: Option[]
   className?: string
+  buttonColor?: string
+  buttonClass?: string
+  menuClass?: string
 }
 
 const DropMenu = ({
   options,
-  className
+  className,
+  buttonColor = "bg-gray-200",
+  buttonClass = "p-2 rounded-md hover:bg-gray-300",
+  menuClass = "bg-white shadow-lg rounded-md mt-2",
 }: Props) => {
-  return (
-    <Root>
-      <Trigger asChild>
-        <button aria-label="Main Menu" className={className}>
-          <HamburgerMenuIcon />
-        </button>
-      </Trigger>
+  const [open, toggleOpen, setOpen] = useToggle(false)
 
-      <Portal>
-        <Content sideOffset={5} className="bg-white ba b--gray min-h-100">
+  return (
+    <div className={`cursor-pointer ${className}`}>
+      <HamburgerMenuIcon color={buttonColor} className={buttonClass} onClick={toggleOpen} />
+      {open && (
+        <div className={`absolute z-10 ${menuClass}`}>
           {options.map(({ label, onSelect }, i) => (
-            <Item
+            <div
               key={`${label}-${i}`}
-              onClick={onSelect}
-              className="mv2 h2 w4 self-center tc b--grey ba mh2 flex items-center justify-center"
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-md"
+              onClick={() => {
+                onSelect()
+                setOpen(false)
+              }}
             >
               {label}
-            </Item>
+            </div>
           ))}
-        </Content>
-      </Portal>
-    </Root>
+        </div>
+      )}
+    </div>
   )
 }
 

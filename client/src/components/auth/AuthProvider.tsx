@@ -1,8 +1,15 @@
 import { useMutation } from "@apollo/client";
-import { useContext, createContext, type PropsWithChildren, useState, useMemo } from "react";
-import { type To, useNavigate } from "react-router";
+import { useContext, createContext, PropsWithChildren, useState, useMemo } from "react";
+import { To, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { LoginDocument, SignupDocument, useCurrentUserQuery, type LoginMutationVariables, type SignupMutationVariables, type User } from "src/__generated__/types";
+import {
+  LoginDocument,
+  SignupDocument,
+  useCurrentUserQuery,
+  LoginMutationVariables,
+  SignupMutationVariables,
+  User
+} from "src/__generated__/types";
 
 type Login = (data: LoginMutationVariables, to: To) => void
 type Signup = (data: SignupMutationVariables, to: To) => void
