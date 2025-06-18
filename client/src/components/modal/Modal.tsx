@@ -1,46 +1,31 @@
 import {
   createContext,
-  type CSSProperties,
-  type Dispatch,
-  type PropsWithChildren,
-  type SetStateAction
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  useContext
 } from "react"
-
-const backgroundStyle: CSSProperties = {
-  position: "absolute",
-  zIndex: 900,
-  minHeight: "100%",
-  minWidth: "100%",
-  backgroundColor: "grey",
-  opacity: 0.5,
-  top: 0,
-  left: 0
-}
-
-const containerStyle: CSSProperties = {
-  position: "absolute",
-  top: "30%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  border: "2px solid black",
-  minWidth: "75%",
-  minHeight: "33%",
-  zIndex: 901,
-  backgroundColor: "white"
-}
 
 export const ModalContext = createContext({
   close: () => { }
 })
 
+export const useModal = () => {
+  return useContext(ModalContext)
+}
+
 type Props = {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
+  bgColor?: string
+  className?: string
 }
 
 const Modal = ({
   open,
   setOpen,
+  bgColor = "bg-white",
+  className,
   children
 }: PropsWithChildren<Props>) => {
   if (!open) {
@@ -51,12 +36,16 @@ const Modal = ({
 
   return (
     <ModalContext.Provider value={{ close }}>
-      <div style={containerStyle} onClick={e => {
-        e.stopPropagation()
-      }}>
+      <div
+        className={`z-40 absolute rounded max-h-screen overflow-auto ${bgColor} ${className}`}
+        onClick={e => { e.stopPropagation() }}
+      >
         {children}
       </div>
-      <div style={backgroundStyle} onClick={close} />
+      <div
+        className="w-full h-full z-30 absolute top-0 left-0"
+        onClick={close}
+      />
     </ModalContext.Provider>
   )
 }

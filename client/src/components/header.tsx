@@ -8,6 +8,7 @@ import CreateLeftoverForm from "./leftovers/CreateLeftoverForm";
 import { routeName } from "src/utils/stringUtils";
 import Row from "./flex/Row";
 import { PRIMARY } from "src/utils/colors";
+import Col from "./flex/Col";
 
 const cases: Record<string, JSX.Element> = {
   ['/timeline']: <CreateItemForm />,
@@ -49,7 +50,7 @@ const Header = () => {
     },
   ].filter(({ label }) => label !== name)
 
-  const showButton = !!cases[window.location.pathname]
+  const showButton = !!cases[window.location.pathname] || true
 
   return (
     <Row className="justify-end w-full gap-4 items-center p-4">
@@ -64,8 +65,16 @@ const Header = () => {
         menuClass="bg-tertiary -ml-12 rounded-mg"
         buttonClass="w-12 h-12 rounded hover:bg-tertiary"
       />
-      <Modal open={open} setOpen={setOpen}>
-        <DynamicCreate />
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        bgColor="bg-yellow-500"
+        className="top-0 left-0 w-full p-4 h-full lg:left-auto lg:right-0 lg:mr-8 lg:mt-20 lg:w-1/4"
+      >
+        {/* <DynamicCreate /> */}
+        <Col className="w-full bg-green-500">
+          foo
+        </Col>
       </Modal>
     </Row>
   )

@@ -1,9 +1,8 @@
-import { useQuery } from '@apollo/client'
 import Item from './Item'
-import { TimelineItemsDocument, type TimelineItem } from 'src/__generated__/types'
+import { TimelineItem, useTimelineItemsQuery } from 'src/__generated__/types'
 
 const Timeline = () => {
-  const { data, loading } = useQuery(TimelineItemsDocument)
+  const { data, loading } = useTimelineItemsQuery()
 
   if (loading || !data?.timelineItems) {
     return <>Loading</>
