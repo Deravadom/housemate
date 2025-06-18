@@ -7,6 +7,7 @@ import CaseWrapper from "./CaseWrapper";
 import CreateLeftoverForm from "./leftovers/CreateLeftoverForm";
 import { routeName } from "src/utils/stringUtils";
 import Row from "./flex/Row";
+import { PRIMARY } from "src/utils/colors";
 
 const cases: Record<string, JSX.Element> = {
   ['/timeline']: <CreateItemForm />,
@@ -58,8 +59,10 @@ const Header = () => {
       )}
       <DropMenu
         options={options}
-        className="w-6 h-6 bg-red-200"
-
+        className="w-12 h-12"
+        buttonColor={PRIMARY}
+        menuClass="bg-tertiary -ml-12 rounded-mg"
+        buttonClass="w-12 h-12 rounded hover:bg-tertiary"
       />
       <Modal open={open} setOpen={setOpen}>
         <DynamicCreate />

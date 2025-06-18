@@ -17,7 +17,7 @@ type Props = {
 const DropMenu = ({
   options,
   className,
-  buttonColor = "bg-gray-200",
+  buttonColor,
   buttonClass = "p-2 rounded-md hover:bg-gray-300",
   menuClass = "bg-white shadow-lg rounded-md mt-2",
 }: Props) => {
