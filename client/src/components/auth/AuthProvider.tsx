@@ -1,14 +1,13 @@
-import { useMutation } from "@apollo/client";
 import { useContext, createContext, PropsWithChildren, useState, useMemo } from "react";
 import { To, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import {
-  LoginDocument,
-  SignupDocument,
   useCurrentUserQuery,
   LoginMutationVariables,
   SignupMutationVariables,
-  User
+  User,
+  useLoginMutation,
+  useSignupMutation
 } from "src/__generated__/types";
 
 type Login = (data: LoginMutationVariables, to: To) => void
@@ -26,8 +25,8 @@ type AuthType = {
 const AuthContext = createContext<AuthType | null>(null);
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [apiLogin] = useMutation(LoginDocument)
-  const [apiSignup] = useMutation(SignupDocument)
+  const [apiLogin] = useLoginMutation()
+  const [apiSignup] = useSignupMutation()
   const [token, setToken] = useState(localStorage.getItem("housemate-bearer"))
   const navigate = useNavigate()
 
