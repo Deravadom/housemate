@@ -10,7 +10,7 @@ module Types
     field :test_field, String, null: false, description: "An example field added by the generator"
     
     def test_field
-      context[:current_user]&.email
+      context[:current_user]&.email || "No current user"
     end
   end
 end
