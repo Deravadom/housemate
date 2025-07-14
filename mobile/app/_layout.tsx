@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import * as SecureStore from "expo-secure-store";
 import "../global.css";
 
@@ -26,6 +27,7 @@ const client = new ApolloClient({
 const RootLayout = () => {
   return (
     <ApolloProvider client={client}>
+      <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }} />
     </ApolloProvider>
   );
