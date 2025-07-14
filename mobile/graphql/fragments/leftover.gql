@@ -1,0 +1,7 @@
+fragment Leftover on Leftover {
+  id
+  name
+  allergens
+  useBy
+  trashBy
+}

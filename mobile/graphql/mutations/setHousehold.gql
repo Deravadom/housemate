@@ -1,0 +1,10 @@
+mutation setHousehold($id: ID!) {
+  setHousehold(id: $id) {
+    id
+    name
+    users {
+      name
+      email
+    }
+  }
+}

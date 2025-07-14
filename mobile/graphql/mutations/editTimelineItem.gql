@@ -1,0 +1,20 @@
+# import TimelineItem from "../fragments/timelineItem.gql"
+mutation editTimelineItem(
+  $id: ID!
+  $title: String!,
+  $body: String,
+  $frequencyUnit: FrequencyEnum,
+  $frequencyValue: Int,
+  $lastCompletedAt: ISO8601DateTime
+) {
+  editTimelineItem(
+    id: $id
+    title: $title,
+    body: $body,
+    frequencyUnit: $frequencyUnit,
+    frequencyValue: $frequencyValue,
+    lastCompletedAt: $lastCompletedAt
+  ) { 
+    ...TimelineItem
+  }
+}

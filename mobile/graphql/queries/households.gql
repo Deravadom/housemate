@@ -1,0 +1,10 @@
+query households {
+  households {
+    id
+    name
+    users {
+      name
+      email
+    }
+  }
+}

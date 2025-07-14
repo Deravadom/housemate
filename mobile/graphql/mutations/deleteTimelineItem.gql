@@ -1,0 +1,3 @@
+mutation deleteTimelineItem($id: ID!) {
+  deleteTimelineItem(id: $id)
+}
