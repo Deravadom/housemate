@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 // TODO: Import and use the relevant Apollo query for households
 
-export default function HouseholdsPage() {
+const HouseholdsPage = () => {
   // TODO: Use Apollo query to fetch households
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -9,4 +9,6 @@ export default function HouseholdsPage() {
       {/* TODO: Render households here */}
     </View>
   );
-} 
+};
+
+export default HouseholdsPage; 

@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 // TODO: Import and use Apollo mutations for login/signup
 
-export default function LoginPage() {
+const LoginPage = () => {
   // TODO: Implement login/signup form and logic
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -9,4 +9,6 @@ export default function LoginPage() {
       {/* TODO: Render login/signup form here */}
     </View>
   );
-} 
+};
+
+export default LoginPage; 

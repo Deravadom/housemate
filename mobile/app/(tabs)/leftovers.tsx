@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 // TODO: Import and use the relevant Apollo query for leftovers
 
-export default function LeftoversPage() {
+const LeftoversPage = () => {
   // TODO: Use Apollo query to fetch leftovers
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -9,4 +9,6 @@ export default function LeftoversPage() {
       {/* TODO: Render leftovers here */}
     </View>
   );
-} 
+};
+
+export default LeftoversPage; 

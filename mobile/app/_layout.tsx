@@ -23,10 +23,12 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export default function RootLayout() {
+const RootLayout = () => {
   return (
     <ApolloProvider client={client}>
       <Stack screenOptions={{ headerShown: false }} />
     </ApolloProvider>
-  )
-}
+  );
+};
+
+export default RootLayout;

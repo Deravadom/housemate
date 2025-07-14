@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 // TODO: Import and use the relevant Apollo query for timeline items
 
-export default function TimelinePage() {
+const TimelinePage = () => {
   // TODO: Use Apollo query to fetch timeline items
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -9,4 +9,6 @@ export default function TimelinePage() {
       {/* TODO: Render timeline items here */}
     </View>
   );
-} 
+};
+
+export default TimelinePage; 

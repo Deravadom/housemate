@@ -8,7 +8,7 @@ const pages = [
   { path: '/households', label: 'Households' },
 ];
 
-export default function DashboardPage() {
+const DashboardPage = () => {
   const router = useRouter();
 
   return (
@@ -18,11 +18,13 @@ export default function DashboardPage() {
         <TouchableOpacity
           key={page.path}
           onPress={() => router.push(page.path as any)}
-          style={{ marginVertical: 10, padding: 16, borderRadius: 8, borderWidth: 1, borderColor: '#3b82f6', minWidth: 200, alignItems: 'center' }}
+          className="my-2 p-4 rounded-lg border border-blue-500 min-w-60 items-center"
         >
-          <Text style={{ color: '#3b82f6', fontSize: 18 }}>{page.label}</Text>
+          <Text className="text-blue-500 text-lg">{page.label}</Text>
         </TouchableOpacity>
       ))}
     </View>
   );
-} 
+};
+
+export default DashboardPage; 
