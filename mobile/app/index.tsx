@@ -6,25 +6,22 @@ import TestApi from "@/components/TestApi";
 import * as SecureStore from "expo-secure-store"
 
 const httpLink = new HttpLink({
-  // uri: 'http://localhost:3000/graphql', // TODO: Replace with your deployed API URL as needed
   uri: 'https://light-promptly-primate.ngrok-free.app/graphql'
 });
 
-// const authLink = setContext(async (_, { headers }) => {
-//   const token = await SecureStore.getItemAsync('housemate-bearer');
-//   console.log('token', token)
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : "",
-//     }
-//   }
-// });
+const authLink = setContext(async (_, { headers }) => {
+  const token = await SecureStore.getItemAsync('housemate-bearer');
+  console.log('token', token)
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
 
-// Initialize Apollo Client
 const client = new ApolloClient({
-  // link: authLink.concat(httpLink),
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
 

@@ -2,11 +2,8 @@ import { useTestFieldLazyQuery, useTestFieldQuery } from "@/__generated__/types"
 import { Text, TouchableOpacity, View } from "react-native"
 
 const TestApi = () => {
-  const { data, error } = useTestFieldQuery()
+  const { data } = useTestFieldQuery()
   const [query, { data: foo }] = useTestFieldLazyQuery()
-
-  console.log(data, error)
-  console.log(foo)
 
   return <View>
     <Text>Foo</Text>
