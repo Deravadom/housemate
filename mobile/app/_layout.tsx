@@ -2,6 +2,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 import { setContext } from '@apollo/client/link/context';
 import { Stack } from 'expo-router';
 import * as SecureStore from "expo-secure-store";
+import "../global.css";
 
 const httpLink = new HttpLink({
   uri: 'https://light-promptly-primate.ngrok-free.app/graphql'
