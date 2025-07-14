@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 
-export default function TabLayout() {
+const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
@@ -15,4 +15,6 @@ export default function TabLayout() {
       <Tabs.Screen name="testapi" options={{ title: 'Test API' }} />
     </Tabs>
   );
-} 
+};
+
+export default TabLayout; 
