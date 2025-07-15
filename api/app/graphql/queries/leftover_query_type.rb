@@ -11,14 +11,14 @@ module Queries
     end
 
     def leftovers
-      return unless (user = context[:current_user])
-      user.leftovers.order(:use_by)
+      return unless current_user
+      current_user.leftovers.order(:use_by)
     end
 
     def leftover(id:)
-      return unless (user = context[:current_user])
+      return unless current_user
 
-      user.leftovers.find(id)
+      current_user.leftovers.find(id)
     end
   end
 end

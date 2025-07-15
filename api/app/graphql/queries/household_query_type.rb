@@ -7,8 +7,8 @@ module Queries
     end
 
     def households
-      return unless (user = context[:current_user])
-      user.households
+      return unless current_user
+      current_user.households
     end
   end
 end

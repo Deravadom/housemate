@@ -11,14 +11,14 @@ module Queries
     end
 
     def timeline_items
-      return unless (user = context[:current_user])
-      TimelineItem.where(household: user.household).order(:id)
+      return unless current_user
+      TimelineItem.where(household: current_user.household).order(:id)
     end
 
     def timeline_item(id:)
-      return unless (user = context[:current_user])
+      return unless current_user
 
-      user.timeline_items.find(id)
+      current_user.timeline_items.find(id)
     end
   end
 end

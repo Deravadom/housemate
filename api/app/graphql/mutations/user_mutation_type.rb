@@ -36,10 +36,10 @@ module Mutations
     end
 
     def change_household(id:)
-      return unless (user = context[:current_user])
-      household = user.households.find!(id)
+      return unless current_user
+      household = current_user.households.find!(id)
 
-      user.update_column(household_id: household.id)
+      current_user.update_column(household_id: household.id)
       household
     end
 

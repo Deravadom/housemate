@@ -28,21 +28,21 @@ module Mutations
     end
 
     def create_leftover(**leftover_args)
-      return unless (user = context[:current_user])
-      leftover = Leftover.create!(**leftover_args, user: user, household: user.household)
+      return unless current_user
+      leftover = Leftover.create!(**leftover_args, user: current_user, household: current_user.household)
     end
 
     def edit_leftover(id:, **leftover_args)
-      return unless (user = context[:current_user])
-      leftover = user.leftovers.find(id)
+      return unless current_user
+      leftover = current_user.leftovers.find(id)
 
       leftover.update!(**leftover_args)
       leftover
     end
 
     def delete_leftover(id:)
-      return unless (user = context[:current_user])
-      user.leftovers.find(id)&.destroy!
+      return unless current_user
+      current_user.leftovers.find(id)&.destroy!
     end
   end
 end

@@ -30,22 +30,22 @@ module Mutations
     end
 
     def create_timeline_item(**item_args)
-      return unless (user = context[:current_user])
+      return unless current_user
 
-      item = TimelineItem.create!(**item_args, user: user, household: user.household)
+      item = TimelineItem.create!(**item_args, user: current_user, household: current_user.household)
     end
 
     def edit_timeline_item(id:, **item_args)
-      return unless (user = context[:current_user])
-      item = user.timeline_items.find(id)
+      return unless current_user
+      item = current_user.timeline_items.find(id)
 
       item.update!(**item_args)
       item
     end
 
     def delete_timeline_item(id:)
-      return unless (user = context[:current_user])
-      user.timeline_items.find(id)&.destroy!
+      return unless current_user
+      current_user.timeline_items.find(id)&.destroy!
     end
   end
 end
