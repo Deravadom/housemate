@@ -46,18 +46,33 @@ export type Leftover = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addUserToHousehold?: Maybe<Scalars['Boolean']['output']>;
+  createHousehold?: Maybe<Household>;
   createLeftover?: Maybe<Leftover>;
   createTimelineItem?: Maybe<TimelineItem>;
+  deleteHousehold?: Maybe<Scalars['Boolean']['output']>;
   deleteLeftover: Scalars['Boolean']['output'];
   deleteTimelineItem: Scalars['Boolean']['output'];
   editHousehold?: Maybe<Household>;
   editLeftover: Leftover;
   editTimelineItem: TimelineItem;
   login?: Maybe<Scalars['JSON']['output']>;
+  removeUserFromHousehold?: Maybe<Scalars['Boolean']['output']>;
   setHousehold?: Maybe<Household>;
   signup?: Maybe<Scalars['JSON']['output']>;
   /** An example field added by the generator */
   testField: Scalars['String']['output'];
+};
+
+
+export type MutationAddUserToHouseholdArgs = {
+  id: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+
+export type MutationCreateHouseholdArgs = {
+  name: Scalars['String']['input'];
 };
 
 
@@ -75,6 +90,11 @@ export type MutationCreateTimelineItemArgs = {
   frequencyValue?: InputMaybe<Scalars['Int']['input']>;
   lastCompletedAt?: InputMaybe<Scalars['ISO8601DateTime']['input']>;
   title: Scalars['String']['input'];
+};
+
+
+export type MutationDeleteHouseholdArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -118,6 +138,12 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationRemoveUserFromHouseholdArgs = {
+  id: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+
 export type MutationSetHouseholdArgs = {
   id: Scalars['ID']['input'];
 };
@@ -132,7 +158,6 @@ export type MutationSignupArgs = {
 export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
-  foo?: Maybe<Scalars['String']['output']>;
   households?: Maybe<Array<Household>>;
   leftover: Leftover;
   leftovers?: Maybe<Array<Leftover>>;
@@ -177,6 +202,21 @@ export type LeftoverFragment = { __typename?: 'Leftover', id: string, name: stri
 
 export type TimelineItemFragment = { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, lastCompletedAt?: any | null, frequency?: string | null, frequencyUnit?: string | null, frequencyValue?: number | null };
 
+export type AddUserToHouseholdMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+}>;
+
+
+export type AddUserToHouseholdMutation = { __typename?: 'Mutation', addUserToHousehold?: boolean | null };
+
+export type CreateHouseholdMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type CreateHouseholdMutation = { __typename?: 'Mutation', createHousehold?: { __typename?: 'Household', id: string, name: string, users?: Array<{ __typename?: 'User', name?: string | null, email: string }> | null } | null };
+
 export type CreateLeftoverMutationVariables = Exact<{
   name: Scalars['String']['input'];
   trashBy: Scalars['ISO8601DateTime']['input'];
@@ -197,6 +237,13 @@ export type CreateTimelineItemMutationVariables = Exact<{
 
 
 export type CreateTimelineItemMutation = { __typename?: 'Mutation', createTimelineItem?: { __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, lastCompletedAt?: any | null, frequency?: string | null, frequencyUnit?: string | null, frequencyValue?: number | null } | null };
+
+export type DeleteHouseholdMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteHouseholdMutation = { __typename?: 'Mutation', deleteHousehold?: boolean | null };
 
 export type DeleteTimelineItemMutationVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -224,6 +271,14 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login?: any | null };
+
+export type RemoveUserFromHouseholdMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+}>;
+
+
+export type RemoveUserFromHouseholdMutation = { __typename?: 'Mutation', removeUserFromHousehold?: boolean | null };
 
 export type SetHouseholdMutationVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -273,11 +328,6 @@ export type TimelineItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TimelineItemsQuery = { __typename?: 'Query', timelineItems?: Array<{ __typename?: 'TimelineItem', id: string, title: string, body?: string | null, color?: string | null, dueAt?: any | null, lastCompletedAt?: any | null, frequency?: string | null, frequencyUnit?: string | null, frequencyValue?: number | null }> | null };
 
-export type FooQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FooQuery = { __typename?: 'Query', foo?: string | null };
-
 export const LeftoverFragmentDoc = gql`
     fragment Leftover on Leftover {
   id
@@ -300,6 +350,76 @@ export const TimelineItemFragmentDoc = gql`
   frequencyValue
 }
     `;
+export const AddUserToHouseholdDocument = gql`
+    mutation addUserToHousehold($id: ID!, $userId: ID!) {
+  addUserToHousehold(id: $id, userId: $userId)
+}
+    `;
+export type AddUserToHouseholdMutationFn = Apollo.MutationFunction<AddUserToHouseholdMutation, AddUserToHouseholdMutationVariables>;
+
+/**
+ * __useAddUserToHouseholdMutation__
+ *
+ * To run a mutation, you first call `useAddUserToHouseholdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddUserToHouseholdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addUserToHouseholdMutation, { data, loading, error }] = useAddUserToHouseholdMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useAddUserToHouseholdMutation(baseOptions?: Apollo.MutationHookOptions<AddUserToHouseholdMutation, AddUserToHouseholdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddUserToHouseholdMutation, AddUserToHouseholdMutationVariables>(AddUserToHouseholdDocument, options);
+      }
+export type AddUserToHouseholdMutationHookResult = ReturnType<typeof useAddUserToHouseholdMutation>;
+export type AddUserToHouseholdMutationResult = Apollo.MutationResult<AddUserToHouseholdMutation>;
+export type AddUserToHouseholdMutationOptions = Apollo.BaseMutationOptions<AddUserToHouseholdMutation, AddUserToHouseholdMutationVariables>;
+export const CreateHouseholdDocument = gql`
+    mutation createHousehold($name: String!) {
+  createHousehold(name: $name) {
+    id
+    name
+    users {
+      name
+      email
+    }
+  }
+}
+    `;
+export type CreateHouseholdMutationFn = Apollo.MutationFunction<CreateHouseholdMutation, CreateHouseholdMutationVariables>;
+
+/**
+ * __useCreateHouseholdMutation__
+ *
+ * To run a mutation, you first call `useCreateHouseholdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateHouseholdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createHouseholdMutation, { data, loading, error }] = useCreateHouseholdMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useCreateHouseholdMutation(baseOptions?: Apollo.MutationHookOptions<CreateHouseholdMutation, CreateHouseholdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateHouseholdMutation, CreateHouseholdMutationVariables>(CreateHouseholdDocument, options);
+      }
+export type CreateHouseholdMutationHookResult = ReturnType<typeof useCreateHouseholdMutation>;
+export type CreateHouseholdMutationResult = Apollo.MutationResult<CreateHouseholdMutation>;
+export type CreateHouseholdMutationOptions = Apollo.BaseMutationOptions<CreateHouseholdMutation, CreateHouseholdMutationVariables>;
 export const CreateLeftoverDocument = gql`
     mutation createLeftover($name: String!, $trashBy: ISO8601DateTime!, $allergens: String, $useBy: ISO8601DateTime) {
   createLeftover(
@@ -384,6 +504,37 @@ export function useCreateTimelineItemMutation(baseOptions?: Apollo.MutationHookO
 export type CreateTimelineItemMutationHookResult = ReturnType<typeof useCreateTimelineItemMutation>;
 export type CreateTimelineItemMutationResult = Apollo.MutationResult<CreateTimelineItemMutation>;
 export type CreateTimelineItemMutationOptions = Apollo.BaseMutationOptions<CreateTimelineItemMutation, CreateTimelineItemMutationVariables>;
+export const DeleteHouseholdDocument = gql`
+    mutation deleteHousehold($id: ID!) {
+  deleteHousehold(id: $id)
+}
+    `;
+export type DeleteHouseholdMutationFn = Apollo.MutationFunction<DeleteHouseholdMutation, DeleteHouseholdMutationVariables>;
+
+/**
+ * __useDeleteHouseholdMutation__
+ *
+ * To run a mutation, you first call `useDeleteHouseholdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteHouseholdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteHouseholdMutation, { data, loading, error }] = useDeleteHouseholdMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteHouseholdMutation(baseOptions?: Apollo.MutationHookOptions<DeleteHouseholdMutation, DeleteHouseholdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteHouseholdMutation, DeleteHouseholdMutationVariables>(DeleteHouseholdDocument, options);
+      }
+export type DeleteHouseholdMutationHookResult = ReturnType<typeof useDeleteHouseholdMutation>;
+export type DeleteHouseholdMutationResult = Apollo.MutationResult<DeleteHouseholdMutation>;
+export type DeleteHouseholdMutationOptions = Apollo.BaseMutationOptions<DeleteHouseholdMutation, DeleteHouseholdMutationVariables>;
 export const DeleteTimelineItemDocument = gql`
     mutation deleteTimelineItem($id: ID!) {
   deleteTimelineItem(id: $id)
@@ -492,6 +643,38 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const RemoveUserFromHouseholdDocument = gql`
+    mutation removeUserFromHousehold($id: ID!, $userId: ID!) {
+  removeUserFromHousehold(id: $id, userId: $userId)
+}
+    `;
+export type RemoveUserFromHouseholdMutationFn = Apollo.MutationFunction<RemoveUserFromHouseholdMutation, RemoveUserFromHouseholdMutationVariables>;
+
+/**
+ * __useRemoveUserFromHouseholdMutation__
+ *
+ * To run a mutation, you first call `useRemoveUserFromHouseholdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveUserFromHouseholdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeUserFromHouseholdMutation, { data, loading, error }] = useRemoveUserFromHouseholdMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useRemoveUserFromHouseholdMutation(baseOptions?: Apollo.MutationHookOptions<RemoveUserFromHouseholdMutation, RemoveUserFromHouseholdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveUserFromHouseholdMutation, RemoveUserFromHouseholdMutationVariables>(RemoveUserFromHouseholdDocument, options);
+      }
+export type RemoveUserFromHouseholdMutationHookResult = ReturnType<typeof useRemoveUserFromHouseholdMutation>;
+export type RemoveUserFromHouseholdMutationResult = Apollo.MutationResult<RemoveUserFromHouseholdMutation>;
+export type RemoveUserFromHouseholdMutationOptions = Apollo.BaseMutationOptions<RemoveUserFromHouseholdMutation, RemoveUserFromHouseholdMutationVariables>;
 export const SetHouseholdDocument = gql`
     mutation setHousehold($id: ID!) {
   setHousehold(id: $id) {
@@ -803,40 +986,3 @@ export type TimelineItemsQueryHookResult = ReturnType<typeof useTimelineItemsQue
 export type TimelineItemsLazyQueryHookResult = ReturnType<typeof useTimelineItemsLazyQuery>;
 export type TimelineItemsSuspenseQueryHookResult = ReturnType<typeof useTimelineItemsSuspenseQuery>;
 export type TimelineItemsQueryResult = Apollo.QueryResult<TimelineItemsQuery, TimelineItemsQueryVariables>;
-export const FooDocument = gql`
-    query foo {
-  foo
-}
-    `;
-
-/**
- * __useFooQuery__
- *
- * To run a query within a React component, call `useFooQuery` and pass it any options that fit your needs.
- * When your component renders, `useFooQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFooQuery({
- *   variables: {
- *   },
- * });
- */
-export function useFooQuery(baseOptions?: Apollo.QueryHookOptions<FooQuery, FooQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FooQuery, FooQueryVariables>(FooDocument, options);
-      }
-export function useFooLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FooQuery, FooQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FooQuery, FooQueryVariables>(FooDocument, options);
-        }
-export function useFooSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FooQuery, FooQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FooQuery, FooQueryVariables>(FooDocument, options);
-        }
-export type FooQueryHookResult = ReturnType<typeof useFooQuery>;
-export type FooLazyQueryHookResult = ReturnType<typeof useFooLazyQuery>;
-export type FooSuspenseQueryHookResult = ReturnType<typeof useFooSuspenseQuery>;
-export type FooQueryResult = Apollo.QueryResult<FooQuery, FooQueryVariables>;

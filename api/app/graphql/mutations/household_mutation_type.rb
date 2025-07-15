@@ -15,16 +15,16 @@ module Mutations
         argument :name, String, required: true
       end
 
-      field :delete_household, Boolean do
+      field :delete_household, GraphQL::Types::Boolean do
         argument :id, GraphQL::Types::ID, required: true
       end
 
-      field :add_user_to_household, Boolean do
+      field :add_user_to_household, GraphQL::Types::Boolean do
         argument :id, GraphQL::Types::ID, required: true
         argument :user_id, GraphQL::Types::ID, required: true
       end
 
-      field :remove_user_from_household, Boolean do
+      field :remove_user_from_household, GraphQL::Types::Boolean do
         argument :id, GraphQL::Types::ID, required: true
         argument :user_id, GraphQL::Types::ID, required: true
       end

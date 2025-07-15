@@ -1,0 +1,3 @@
+mutation addUserToHousehold($id: ID!, $userId: ID!) {
+  addUserToHousehold(id: $id, userId: $userId)
+} 
