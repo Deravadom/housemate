@@ -4,6 +4,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SecureStore from "expo-secure-store";
 import "../global.css";
+import AuthProvider from '@/components/auth/AuthProvider';
 
 const httpLink = new HttpLink({
   uri: 'https://light-promptly-primate.ngrok-free.app/graphql'
@@ -27,8 +28,10 @@ const client = new ApolloClient({
 const RootLayout = () => {
   return (
     <ApolloProvider client={client}>
-      <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <AuthProvider>
+        <StatusBar style="dark" />
+        <Stack screenOptions={{ headerShown: false }} />
+      </AuthProvider>
     </ApolloProvider>
   );
 };
