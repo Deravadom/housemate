@@ -1,5 +1,6 @@
 import { Text, View, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 const pages = [
   { path: '/testapi', label: 'Test API' },
@@ -10,6 +11,12 @@ const pages = [
 
 const DashboardPage = () => {
   const router = useRouter();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.replace('/login');
+  };
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -23,6 +30,12 @@ const DashboardPage = () => {
           <Text className="text-blue-500 text-lg">{page.label}</Text>
         </TouchableOpacity>
       ))}
+      <TouchableOpacity
+        onPress={handleLogout}
+        className="mt-8 p-4 rounded-lg border border-red-500 min-w-60 items-center bg-red-50"
+      >
+        <Text className="text-red-500 text-lg font-bold">Log Out</Text>
+      </TouchableOpacity>
     </View>
   );
 };
