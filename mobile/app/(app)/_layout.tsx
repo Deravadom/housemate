@@ -1,5 +1,11 @@
 import { Stack } from 'expo-router';
 
+const pages = [
+  { path: '/(app)/timeline', label: 'Timeline' },
+  { path: '/(app)/leftovers', label: 'Leftovers' },
+  { path: '/(app)/households', label: 'Households' },
+];
+
 const AppLayout = () => {
   return (
     <Stack
@@ -10,42 +16,15 @@ const AppLayout = () => {
         animation: 'slide_from_right'
       }}
     >
-      <Stack.Screen
-        name="dashboard"
-        options={{
-          title: 'Dashboard'
-        }}
-      />
-      <Stack.Screen
-        name="timeline"
-        options={{
-          title: 'Timeline'
-        }}
-      />
-      <Stack.Screen
-        name="leftovers"
-        options={{
-          title: 'Leftovers'
-        }}
-      />
-      <Stack.Screen
-        name="households"
-        options={{
-          title: 'Households'
-        }}
-      />
-      <Stack.Screen
-        name="household"
-        options={{
-          title: 'Household Details'
-        }}
-      />
-      <Stack.Screen
-        name="testapi"
-        options={{
-          title: 'Test API'
-        }}
-      />
+      {pages.map(page => (
+        <Stack.Screen
+          key={page.path}
+          name={page.path}
+          options={{
+            title: page.label
+          }}
+        />
+      ))}
     </Stack>
   );
 };
