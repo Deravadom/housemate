@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { MutationLoginArgs } from '@/__generated__/types';
 import FormInput from '@/components/form/FormInput';
+import { router } from 'expo-router';
 
 const LoginPage = () => {
   const { login } = useAuth()

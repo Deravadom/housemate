@@ -1,1 +1,1 @@
-export { default } from './(tabs)/dashboard';
+export { default } from './dashboard';
