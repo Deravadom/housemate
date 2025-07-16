@@ -1,7 +1,0 @@
-# import TimelineItem from "../fragments/timelineItem.gql"
-
-query timelineItems {
-  timelineItems {
-    ...TimelineItem
-  }
-}

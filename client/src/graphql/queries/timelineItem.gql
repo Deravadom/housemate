@@ -1,6 +1,0 @@
-# import TimelineItem from "../fragments/timelineItem.gql"
-query timelineItem($id: ID!) {
-  timelineItem(id: $id) {
-    ...TimelineItem
-  }
-}

@@ -1,7 +1,0 @@
-# import Leftover from "../fragments/leftover.gql"
-
-query leftovers {
-  leftovers {
-    ...Leftover
-  }
-}
