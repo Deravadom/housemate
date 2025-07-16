@@ -4,10 +4,10 @@ import { useAuth } from '@/components/auth/AuthProvider';
 import RequireAuth from '@/components/auth/RequireAuth';
 
 const pages = [
-  { path: '/testapi', label: 'Test API' },
-  { path: '/timeline', label: 'Timeline' },
-  { path: '/leftovers', label: 'Leftovers' },
-  { path: '/households', label: 'Households' },
+  { path: '/(app)/testapi', label: 'Test API' },
+  { path: '/(app)/timeline', label: 'Timeline' },
+  { path: '/(app)/leftovers', label: 'Leftovers' },
+  { path: '/(app)/households', label: 'Households' },
 ];
 
 const DashboardPage = () => {
@@ -16,7 +16,7 @@ const DashboardPage = () => {
 
   const handleLogout = () => {
     logout();
-    router.replace('/login');
+    router.replace('/auth/login');
   };
 
   return (

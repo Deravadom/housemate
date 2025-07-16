@@ -4,11 +4,15 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { MutationLoginArgs } from '@/__generated__/types';
 import FormInput from '@/components/form/FormInput';
-import { router } from 'expo-router';
+
+const defaultValues: MutationLoginArgs = {
+  email: 'test@example.com',
+  password: 'password'
+}
 
 const LoginPage = () => {
   const { login } = useAuth()
-  const formMethods = useForm<MutationLoginArgs>()
+  const formMethods = useForm<MutationLoginArgs>({ defaultValues })
   const { handleSubmit } = formMethods
 
   const onSubmit: SubmitHandler<MutationLoginArgs> = (data) => {

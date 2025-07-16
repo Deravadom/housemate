@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Stack } from 'expo-router';
+import { Stack, Redirect } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SecureStore from "expo-secure-store";
 import "../global.css";
@@ -37,59 +37,16 @@ const RootLayout = () => {
             animation: 'slide_from_right'
           }}
         >
-          <Stack.Screen name="login" options={{ headerShown: false }} />
           <Stack.Screen
-            name="dashboard"
+            name="(app)"
             options={{
-              headerShown: true,
-              title: 'Dashboard',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
+              headerShown: false
             }}
           />
           <Stack.Screen
-            name="timeline"
+            name="auth"
             options={{
-              headerShown: true,
-              title: 'Timeline',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
-            }}
-          />
-          <Stack.Screen
-            name="leftovers"
-            options={{
-              headerShown: true,
-              title: 'Leftovers',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
-            }}
-          />
-          <Stack.Screen
-            name="households"
-            options={{
-              headerShown: true,
-              title: 'Households',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
-            }}
-          />
-          <Stack.Screen
-            name="household"
-            options={{
-              headerShown: true,
-              title: 'Household Details',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
-            }}
-          />
-          <Stack.Screen
-            name="testapi"
-            options={{
-              headerShown: true,
-              title: 'Test API',
-              headerStyle: { backgroundColor: '#3b82f6' },
-              headerTintColor: '#fff'
+              headerShown: false
             }}
           />
         </Stack>

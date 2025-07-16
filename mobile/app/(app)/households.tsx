@@ -26,7 +26,7 @@ const HouseholdsPage = () => {
           <TouchableOpacity
             key={household.id}
             className="mb-4 bg-gray-50 rounded-lg p-4 border border-gray-200"
-            onPress={() => router.push(`/household/${household.id}`)}
+            onPress={() => router.push(`/household/${household.id}` as any)}
           >
             <View className="flex-row justify-between items-center mb-2">
               <Text className="text-xl font-semibold text-gray-800">{household.name}</Text>

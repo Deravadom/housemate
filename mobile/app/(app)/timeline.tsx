@@ -1,14 +1,19 @@
 import { Text, View } from 'react-native';
 import RequireAuth from '@/components/auth/RequireAuth';
-// TODO: Import and use the relevant Apollo query for timeline items
+import { useTimelineItemsQuery } from '@/__generated__/types';
 
 const TimelinePage = () => {
-  // TODO: Use Apollo query to fetch timeline items
+  const { data, loading, error } = useTimelineItemsQuery();
+  console.log(data?.timelineItems);
   return (
     <RequireAuth>
       <View className="flex-1 items-center justify-center bg-white">
         <Text className="text-xl font-bold text-blue-500">Timeline</Text>
-        {/* TODO: Render timeline items here */}
+        {data?.timelineItems?.map((item) => (
+          <Text key={item.id}>{item.title}</Text>
+        ))}
+        {loading && <Text>Loading...</Text>}
+        {error && <Text>Error: {error.message}</Text>}
       </View>
     </RequireAuth>
   );
