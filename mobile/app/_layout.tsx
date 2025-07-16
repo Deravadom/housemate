@@ -1,11 +1,10 @@
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Stack, Redirect } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SecureStore from "expo-secure-store";
 import "../global.css";
 import AuthProvider from '@/components/auth/AuthProvider';
-import RequireAuth from '@/components/auth/RequireAuth';
 
 const httpLink = new HttpLink({
   uri: 'https://light-promptly-primate.ngrok-free.app/graphql'
